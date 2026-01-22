@@ -8,7 +8,7 @@ interface IntroAnimationProps {
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ scrollProgress }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [particles, setParticles] = useState<Particle[]>([]);
-    const requestRef = useRef<number>();
+    const requestRef = useRef<number>(0);
     const initialized = useRef(false);
 
     // Helper to create text coordinates
