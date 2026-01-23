@@ -3,7 +3,7 @@ export const translations = {
         nav: {
             values: "价值观",
             services: "服务",
-            work: "作品",
+            work: "案例",
             pricing: "价格",
             contact: "联系"
         },
@@ -107,7 +107,7 @@ export const translations = {
         nav: {
             values: "Values",
             services: "Services",
-            work: "Work",
+            work: "Cases",
             pricing: "Pricing",
             contact: "Contact"
         },
