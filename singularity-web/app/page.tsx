@@ -113,15 +113,15 @@ export default function Home() {
             <span className="text-lg font-semibold tracking-tight">Singularity Society</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            <button onClick={() => scrollToSection("values")} className="hover:text-white transition-colors">{t.nav.values}</button>
-            <button onClick={() => scrollToSection("services")} className="hover:text-white transition-colors">{t.nav.services}</button>
-            <button onClick={() => scrollToSection("gallery")} className="hover:text-white transition-colors">{t.nav.work}</button>
-            <button onClick={() => scrollToSection("pricing")} className="hover:text-white transition-colors">{t.nav.pricing}</button>
-            <button onClick={() => scrollToSection("footer")} className="hover:text-white transition-colors">{t.nav.contact}</button>
+            <button onClick={() => scrollToSection("values")} className="hover:text-white transition-colors cursor-pointer">{t.nav.values}</button>
+            <button onClick={() => scrollToSection("services")} className="hover:text-white transition-colors cursor-pointer">{t.nav.services}</button>
+            <button onClick={() => scrollToSection("gallery")} className="hover:text-white transition-colors cursor-pointer">{t.nav.work}</button>
+            <button onClick={() => scrollToSection("pricing")} className="hover:text-white transition-colors cursor-pointer">{t.nav.pricing}</button>
+            <button onClick={() => scrollToSection("footer")} className="hover:text-white transition-colors cursor-pointer">{t.nav.contact}</button>
 
             <button
               onClick={toggleLanguage}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/5"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/5 cursor-pointer"
             >
               <Globe className="w-4 h-4 mr-1" />
               <span className="text-xs">{lang === 'zh' ? 'En' : '中'}</span>
@@ -328,8 +328,8 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">{t.pricing.title}</h2>
             <div className="inline-flex p-1 rounded-full bg-zinc-900 border border-white/10 relative">
               <div className={`absolute inset-y-1 w-[140px] rounded-full bg-white/10 transition-all duration-300 ${pricingMode === 'caas' ? 'left-1' : 'left-[148px]'}`} />
-              <button onClick={() => setPricingMode("caas")} className={`relative z-10 w-[140px] py-3 rounded-full font-medium transition-colors ${pricingMode === 'caas' ? 'text-white' : 'text-zinc-500'}`}>{t.pricing.toggle_caas}</button>
-              <button onClick={() => setPricingMode("saas")} className={`relative z-10 w-[140px] py-3 rounded-full font-medium transition-colors ${pricingMode === 'saas' ? 'text-white' : 'text-zinc-500'}`}>{t.pricing.toggle_saas}</button>
+              <button onClick={() => setPricingMode("caas")} className={`relative z-10 w-[140px] py-3 rounded-full font-medium transition-colors cursor-pointer ${pricingMode === 'caas' ? 'text-white' : 'text-zinc-500'}`}>{t.pricing.toggle_caas}</button>
+              <button onClick={() => setPricingMode("saas")} className={`relative z-10 w-[140px] py-3 rounded-full font-medium transition-colors cursor-pointer ${pricingMode === 'saas' ? 'text-white' : 'text-zinc-500'}`}>{t.pricing.toggle_saas}</button>
             </div>
           </div>
 
