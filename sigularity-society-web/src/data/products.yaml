@@ -1,0 +1,65 @@
+products:
+  - id: nexus
+    name:
+      zh: "Nexus"
+      en: "Nexus"
+    description:
+      zh: "基于Telegram的AI执行助手，支持多技能调度、定时任务、记忆系统和远程设备控制。"
+      en: "Telegram-based AI execution assistant with skill dispatch, cron jobs, memory system, and remote device control."
+    status: "active"
+    tags: ["Telegram Bot", "AI Agent", "TypeScript", "Claude Code"]
+    url: "https://github.com/seafhven-ss/Nexus"
+    image: "/images/products/nexus.png"
+    date: "2026-01"
+
+  - id: prism
+    name:
+      zh: "Prism"
+      en: "Prism"
+    description:
+      zh: "轻量级AI助手守护进程，将QQ消息变为智能终端，搭载三层记忆系统与KIMI Code CLI桥接。"
+      en: "Lightweight AI assistant daemon that turns QQ messaging into an intelligent terminal with three-tier memory and KIMI Code CLI bridge."
+    status: "active"
+    tags: ["QQ Bot", "AI Agent", "Node.js", "Memory System"]
+    url: "https://github.com/seafhven-ss/Prism"
+    image: "/images/products/prism.png"
+    date: "2026-02"
+
+  - id: probrief
+    name:
+      zh: "ProBrief"
+      en: "ProBrief"
+    description:
+      zh: "将模糊的项目需求转化为结构化提案文档，规则引擎与LLM混合驱动，自动生成六模块标准Brief。"
+      en: "Turns vague project requests into structured proposals with hybrid rule-engine + LLM, generating 6-module standardized briefs."
+    status: "active"
+    tags: ["Brief Generator", "LLM", "Next.js", "TypeScript"]
+    url: "https://probrief.vercel.app"
+    image: "/images/products/probrief.png"
+    date: "2026-03"
+
+  - id: space-ai-advisor
+    name:
+      zh: "空间AI顾问"
+      en: "Space AI Advisor"
+    description:
+      zh: "为商业地产运营者提供AI驱动的空间决策支持系统。"
+      en: "AI-driven spatial decision support system for commercial real estate operators."
+    status: "development"
+    tags: ["AI Decision", "Real Estate", "Python"]
+    url: null
+    image: "/images/products/space-ai-advisor.png"
+    date: "2026-03"
+
+  - id: workflow-copilot
+    name:
+      zh: "工作流副驾驶"
+      en: "Workflow Copilot"
+    description:
+      zh: "自动化内容生产和客户服务工作流的AI助手平台。"
+      en: "AI assistant platform for automating content production and customer service workflows."
+    status: "planned"
+    tags: ["Workflow", "Automation", "LLM"]
+    url: null
+    image: "/images/products/workflow-copilot.png"
+    date: "2026-Q2"
