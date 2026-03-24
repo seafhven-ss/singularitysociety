@@ -396,16 +396,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4 text-zinc-400">
               <div className="flex items-center gap-3"><Phone className="w-5 h-5" /><span>Mr Seaf (+86) 18360473881</span></div>
-              <div className="flex items-center gap-3"><Mail className="w-5 h-5" /><span>Seafhven@gmail.com</span></div>
+              <div className="flex items-center gap-3"><Mail className="w-5 h-5" /><span>hello@seaf.design</span></div>
               <div className="flex items-center gap-3"><MapPin className="w-5 h-5" /><span>{t.footer.location}</span></div>
             </div>
           </div>
-          <div className="flex justify-end">
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-6">
-              <div className="text-right"><div className="text-sm font-bold text-white mb-1">{t.footer.wechat_title}</div><div className="text-xs text-zinc-500">{t.footer.wechat_desc}</div></div>
-              <div className="w-24 h-24 bg-white p-1 rounded-lg"><Image src="/wechat-qr.jpg" alt="WeChat" width={96} height={96} className="w-full h-full object-cover" /></div>
-            </div>
-          </div>
+
         </div>
       </footer>
 
