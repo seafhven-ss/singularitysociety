@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "./context/LanguageContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans-en",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-sans-cn",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Singularity Society | 奇点社",
-  description: "AI 驱动的内容生产与企业部署服务 - 由 Seaf 创立",
+  title: "Singularity Society | \u5947\u70b9\u793e",
+  description: "\u771f\u5b9e\u4e1a\u52a1\u95ee\u9898 \u00d7 \u8f7b\u91cf AI \u4ea7\u54c1 \u00d7 \u516c\u5f00\u6784\u5efa",
   icons: {
     icon: "/favicon.ico",
   },
@@ -27,13 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+    <html lang="zh-CN">
+      <body className={`${inter.variable} ${notoSansSC.variable} ${jetbrainsMono.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
