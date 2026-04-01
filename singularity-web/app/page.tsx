@@ -49,9 +49,9 @@ function ProductSection({
 }) {
   const isDev = product.slug === "tebot";
   return (
-    <section className="border-b border-[var(--border-default)] py-20 sm:py-24">
+    <section className="border-b border-[var(--border-default)] py-16 sm:py-20 lg:py-24">
       <div
-        className={`mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 ${
+        className={`mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 ${
           reverse ? "lg:[direction:rtl]" : ""
         }`}
       >
@@ -60,7 +60,7 @@ function ProductSection({
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
             {product.heroEyebrow}
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:mt-4 sm:text-3xl lg:text-4xl">
             {product.name}
           </h2>
           {isDev && (
@@ -68,16 +68,16 @@ function ProductSection({
               {product.status}
             </span>
           )}
-          <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)]">
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:mt-4 sm:text-base">
             {product.positioning}
           </p>
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-5 space-y-3 sm:mt-6">
             {product.features.slice(0, 3).map((f) => (
               <li key={f.title} className="flex items-start gap-3">
                 <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-indigo)]" />
                 <div>
                   <p className="text-sm font-medium text-white">{f.title}</p>
-                  <p className="mt-0.5 text-sm text-[var(--text-tertiary)]">
+                  <p className="mt-0.5 text-xs text-[var(--text-tertiary)] sm:text-sm">
                     {f.description}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ function ProductSection({
           </ul>
           <Link
             href={`/products/${product.slug}`}
-            className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[var(--accent-indigo)]"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[var(--accent-indigo)] sm:mt-8"
           >
             查看详情
             <ArrowRight className="h-4 w-4" />
@@ -95,27 +95,27 @@ function ProductSection({
 
         {/* Visual — terminal-style status panel */}
         <FadeInUp
-          delay={0.15}
+          delay={0.1}
           className={reverse ? "lg:[direction:ltr]" : ""}
         >
-          <div className="overflow-hidden rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-5 py-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-              <span className="ml-3 text-xs text-[var(--text-tertiary)]">
+          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-card)]">
+            <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
+              <span className="h-2 w-2 rounded-full bg-[#ff5f57] sm:h-2.5 sm:w-2.5" />
+              <span className="h-2 w-2 rounded-full bg-[#febc2e] sm:h-2.5 sm:w-2.5" />
+              <span className="h-2 w-2 rounded-full bg-[#28c840] sm:h-2.5 sm:w-2.5" />
+              <span className="ml-2 text-[11px] text-[var(--text-tertiary)] sm:ml-3 sm:text-xs">
                 {product.visual.title}
               </span>
             </div>
-            <div className="space-y-2 p-5 font-mono text-sm">
+            <div className="space-y-2 p-4 font-mono text-xs sm:p-5 sm:text-sm">
               {product.visual.lines.map((line, i) => (
                 <p key={i} className="text-[var(--text-secondary)]">
                   <span className="text-[var(--accent-teal)]">▸</span> {line}
                 </p>
               ))}
             </div>
-            <div className="border-t border-[var(--border-default)] px-5 py-3">
-              <div className="flex items-center justify-between text-xs text-[var(--text-tertiary)]">
+            <div className="border-t border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
+              <div className="flex items-center justify-between text-[11px] text-[var(--text-tertiary)] sm:text-xs">
                 <span>{product.heroLabel}</span>
                 <span className="flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-teal)]" />
@@ -151,7 +151,10 @@ export default function Home() {
             </FadeInUp>
             <FadeInUp delay={0.1}>
               <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[4rem]">
-                <span className="bg-[var(--gradient-brand)] bg-clip-text text-transparent">
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)" }}
+                >
                   真实业务问题 × 轻量 AI 产品 × 公开构建
                 </span>
               </h1>
@@ -165,7 +168,8 @@ export default function Home() {
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--gradient-brand)] px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
+                  style={{ backgroundImage: "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)" }}
                 >
                   了解更多
                   <ArrowRight className="h-4 w-4" />

@@ -1,13 +1,22 @@
+import type React from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import type { ProductAction } from "../lib/site-data";
+import { MobileNav } from "./mobile-nav";
+
+const gradientBrand = "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)";
 
 function actionClasses(variant: ProductAction["variant"]) {
   if (variant === "secondary") {
     return "border border-[var(--border-default)] bg-transparent text-[var(--text-primary)] hover:border-[var(--border-hover)]";
   }
 
-  return "bg-[var(--gradient-brand)] text-black";
+  return "text-black";
+}
+
+function actionStyle(variant: ProductAction["variant"]): React.CSSProperties | undefined {
+  if (variant === "secondary") return undefined;
+  return { backgroundImage: gradientBrand };
 }
 
 export function SiteHeader() {
@@ -34,11 +43,12 @@ export function SiteHeader() {
           <Link href="/about" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
             About
           </Link>
-          <Link href="mailto:seafhven@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-[var(--gradient-brand)] px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-[1.02]">
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-[1.02]" style={{ backgroundImage: gradientBrand }}>
             Contact
             <ArrowRight className="h-4 w-4" />
           </Link>
         </nav>
+        <MobileNav />
       </div>
     </header>
   );
@@ -47,7 +57,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-primary)]">
-      <div className="h-px w-full bg-[var(--gradient-brand)] opacity-70" />
+      <div className="h-px w-full opacity-70" style={{ backgroundImage: gradientBrand }} />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-[var(--text-secondary)] sm:px-6 lg:grid-cols-3 lg:px-8">
         <div>
           <p className="text-base font-medium text-white">Singularity Society</p>
@@ -59,6 +69,12 @@ export function SiteFooter() {
           </Link>
           <Link href="/cases" className="block hover:text-white">
             Cases
+          </Link>
+          <Link href="/about" className="block hover:text-white">
+            About
+          </Link>
+          <Link href="/contact" className="block hover:text-white">
+            Contact
           </Link>
         </div>
         <div className="space-y-2">
@@ -112,6 +128,7 @@ export function ActionButtons({ actions }: { actions: ProductAction[] }) {
             key={action.label}
             href={action.href}
             className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-transform hover:scale-[1.02] ${actionClasses(action.variant)}`}
+            style={actionStyle(action.variant)}
             {...(isExternal ? { target: action.href.startsWith("http") ? "_blank" : undefined, rel: action.href.startsWith("http") ? "noreferrer" : undefined } : {})}
           >
             {action.label}

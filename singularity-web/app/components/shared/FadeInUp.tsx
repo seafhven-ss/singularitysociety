@@ -24,17 +24,25 @@ export function FadeInUp({
     setReady(true);
     const el = ref.current;
     if (!el) return;
+
+    // Safety fallback: if observer never fires within 1.5s, show content anyway
+    const fallback = setTimeout(() => setVisible(true), 1500);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          clearTimeout(fallback);
           setVisible(true);
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -60px 0px" }
+      { rootMargin: "0px 0px -40px 0px", threshold: 0.01 }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   // Before JS loads: fully visible (SSR fallback). After JS: animate.
