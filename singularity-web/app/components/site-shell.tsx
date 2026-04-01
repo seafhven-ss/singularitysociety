@@ -1,8 +1,12 @@
+"use client";
+
 import type React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import type { ProductAction } from "../lib/site-data";
 import { MobileNav } from "./mobile-nav";
+import { useLanguage } from "../context/LanguageContext";
 
 const gradientBrand = "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)";
 
@@ -20,31 +24,37 @@ function actionStyle(variant: ProductAction["variant"]): React.CSSProperties | u
 }
 
 export function SiteHeader() {
+  const { t, lang, toggleLanguage } = useLanguage();
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-default)] bg-[rgba(10,10,10,0.88)] backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--bg-panel)] text-xs font-semibold text-white">
-            SS
-          </div>
+          <Image src="/logo-circle.png" alt="奇点社" width={36} height={36} className="rounded-full" />
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-zinc-200">Singularity Society</p>
-            <p className="text-xs text-[var(--text-tertiary)]">Quiet workbench, public build.</p>
+            <p className="text-sm font-medium tracking-[0.06em] text-zinc-200">奇点社</p>
+            <p className="text-xs text-[var(--text-tertiary)] tracking-[0.12em]">Singularity Society</p>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
           <Link href="/products" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            Products
+            {t.nav.products}
           </Link>
           <Link href="/cases" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            Cases
+            {t.nav.cases}
           </Link>
           <Link href="/about" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            About
+            {t.nav.about}
           </Link>
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="text-xs font-medium text-[var(--text-tertiary)] transition-colors hover:text-white border border-[var(--border-default)] rounded-full px-3 py-1.5"
+          >
+            {lang === "zh" ? "EN" : "中"}
+          </button>
           <Link href="/contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-[1.02]" style={{ backgroundImage: gradientBrand }}>
-            Contact
+            {t.nav.contact}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </nav>
@@ -55,26 +65,27 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const { t } = useLanguage();
   return (
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-primary)]">
       <div className="h-px w-full opacity-70" style={{ backgroundImage: gradientBrand }} />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-[var(--text-secondary)] sm:px-6 lg:grid-cols-3 lg:px-8">
         <div>
-          <p className="text-base font-medium text-white">Singularity Society</p>
-          <p className="mt-3 max-w-xs leading-7">真实业务问题 × 轻量 AI 产品 × 公开构建</p>
+          <p className="text-base font-medium text-white">奇点社 · Singularity Society</p>
+          <p className="mt-3 max-w-xs leading-7">{t.footer.tagline}</p>
         </div>
         <div className="space-y-2">
           <Link href="/products" className="block hover:text-white">
-            Products
+            {t.nav.products}
           </Link>
           <Link href="/cases" className="block hover:text-white">
-            Cases
+            {t.nav.cases}
           </Link>
           <Link href="/about" className="block hover:text-white">
-            About
+            {t.nav.about}
           </Link>
           <Link href="/contact" className="block hover:text-white">
-            Contact
+            {t.nav.contact}
           </Link>
         </div>
         <div className="space-y-2">
@@ -85,7 +96,7 @@ export function SiteFooter() {
             @Seafhven
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
-          <p>中国（江苏）自由贸易试验区苏州片区 苏州工业园区独墅湖数字经济产业园</p>
+          <p>{t.footer.location}</p>
         </div>
       </div>
     </footer>

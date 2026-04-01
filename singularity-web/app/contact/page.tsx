@@ -1,12 +1,12 @@
-import { ArrowRight, ExternalLink, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ExternalLink, Mail, MapPin, Twitter, Github, MessageCircle, BookOpen } from "lucide-react";
 import { SiteHeader, SiteFooter } from "../components/site-shell";
 import { FadeInUp } from "../components/shared/FadeInUp";
 
 const socialLinks = [
-  { label: "X / Twitter", handle: "@Seafhven", href: "https://x.com/Seafhven" },
-  { label: "GitHub", handle: "seafhven-ss", href: "https://github.com/seafhven-ss" },
-  { label: "微信公众号", handle: "拾海笔记", href: "#" },
-  { label: "小红书", handle: "拾海Seaf", href: "#" },
+  { label: "X / Twitter", handle: "@Seafhven", href: "https://x.com/Seafhven", icon: Twitter },
+  { label: "GitHub", handle: "seafhven-ss", href: "https://github.com/seafhven-ss", icon: Github },
+  { label: "微信公众号", handle: "拾海笔记", href: "#", icon: MessageCircle },
+  { label: "小红书", handle: "拾海Seaf", href: "#", icon: BookOpen },
 ];
 
 export default function ContactPage() {
@@ -90,9 +90,12 @@ export default function ContactPage() {
                     {...(link.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
                     className="flex items-center justify-between rounded-xl border border-[var(--border-default)] bg-[var(--bg-panel)] p-5 transition-all hover:border-[var(--accent-indigo)]"
                   >
-                    <div>
-                      <p className="text-sm font-medium text-white">{link.label}</p>
-                      <p className="mt-1 text-sm text-[var(--text-tertiary)]">{link.handle}</p>
+                    <div className="flex items-center gap-3">
+                      <link.icon className="h-5 w-5 text-[var(--accent-indigo)] shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-white">{link.label}</p>
+                        <p className="mt-1 text-sm text-[var(--text-tertiary)]">{link.handle}</p>
+                      </div>
                     </div>
                     {link.href.startsWith("http") && (
                       <ExternalLink className="h-4 w-4 text-[var(--text-tertiary)]" />

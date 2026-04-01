@@ -1,11 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { translations } from '../constants/translations';
 
 type Lang = 'zh' | 'en';
 
 interface LanguageContextType {
   lang: Lang;
+  t: typeof translations.zh;
   toggleLanguage: () => void;
 }
 
@@ -19,7 +21,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLanguage }}>
+    <LanguageContext.Provider value={{ lang, t: translations[lang], toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

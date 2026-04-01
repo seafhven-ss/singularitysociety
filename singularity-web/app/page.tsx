@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteFooter, SiteHeader } from "./components/site-shell";
@@ -7,6 +9,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "./components/shared/FadeInUp";
+import { useLanguage } from "./context/LanguageContext";
 
 function ProductCard({ product }: { product: ProductRecord }) {
   const isDev = product.slug === "tebot";
@@ -47,6 +50,7 @@ function ProductSection({
   product: ProductRecord;
   reverse: boolean;
 }) {
+  const { t } = useLanguage();
   const isDev = product.slug === "tebot";
   return (
     <section className="border-b border-[var(--border-default)] py-16 sm:py-20 lg:py-24">
@@ -88,7 +92,7 @@ function ProductSection({
             href={`/products/${product.slug}`}
             className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[var(--accent-indigo)] sm:mt-8"
           >
-            查看详情
+            {t.products.view_detail}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </FadeInUp>
@@ -137,6 +141,7 @@ const orderedProducts = productOrder
   .filter(Boolean);
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <SiteHeader />
@@ -146,22 +151,24 @@ export default function Home() {
           <div className="mx-auto max-w-4xl px-6 pb-20 pt-32 text-center sm:pb-28 sm:pt-40">
             <FadeInUp>
               <p className="text-xs font-medium uppercase tracking-[0.35em] text-[var(--text-tertiary)]">
-                Singularity Society / Built in Public
+                {t.hero.eyebrow}
               </p>
             </FadeInUp>
             <FadeInUp delay={0.1}>
-              <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[4rem]">
+              <h1 className="mt-8 text-4xl font-bold leading-[1.16] tracking-tight sm:text-5xl lg:text-[4rem]">
                 <span
-                  className="bg-clip-text text-transparent"
+                  className="bg-clip-text text-transparent inline-flex flex-wrap justify-center gap-x-8 gap-y-2"
                   style={{ backgroundImage: "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)" }}
                 >
-                  真实业务问题 × 轻量 AI 产品 × 公开构建
+                  {t.hero.title.split("  ").map((part) => (
+                    <span key={part}>{part}</span>
+                  ))}
                 </span>
               </h1>
             </FadeInUp>
             <FadeInUp delay={0.2}>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[var(--text-secondary)]">
-                一个人的 AI 产品实验室，公开构建中
+                {t.hero.subtitle}
               </p>
             </FadeInUp>
             <FadeInUp delay={0.3}>
@@ -171,14 +178,14 @@ export default function Home() {
                   className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
                   style={{ backgroundImage: "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)" }}
                 >
-                  了解更多
+                  {t.hero.cta_primary}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="mailto:seafhven@gmail.com"
+                  href="/contact"
                   className="inline-flex items-center gap-2 rounded-full border border-[var(--border-default)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--border-hover)]"
                 >
-                  联系咨询
+                  {t.hero.cta_secondary}
                 </Link>
               </div>
             </FadeInUp>
@@ -208,13 +215,13 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-6">
             <FadeInUp>
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
-                Case Studies
+                {t.products.section_eyebrow}
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                实践案例
+                {t.products.section_title}
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)]">
-                案例结构固定为背景、挑战、方案、结果，强调叙事推进而不是数据墙。
+                {t.products.section_desc}
               </p>
             </FadeInUp>
 
@@ -235,7 +242,7 @@ export default function Home() {
                       {item.summary}
                     </p>
                     <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition-colors group-hover:text-[var(--accent-indigo)]">
-                      打开案例
+                      {t.products.open_case}
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
                   </Link>

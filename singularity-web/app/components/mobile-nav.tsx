@@ -40,7 +40,7 @@ export function MobileNav() {
               </Link>
             ))}
             <Link
-              href="mailto:seafhven@gmail.com"
+              href="/contact"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-black"
               style={{ backgroundImage: gradientBrand }}
