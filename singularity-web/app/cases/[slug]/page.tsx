@@ -1,14 +1,15 @@
+"use client";
+
 import { notFound } from "next/navigation";
+import { use } from "react";
 import { CasePageView } from "../../components/case-page-view";
-import { cases, getCase } from "../../lib/site-data";
+import { getCase } from "../../lib/site-data";
+import { useLanguage } from "../../context/LanguageContext";
 
-export function generateStaticParams() {
-  return cases.map((item) => ({ slug: item.slug }));
-}
-
-export default async function CaseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const item = getCase(slug);
+export default function CaseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
+  const { lang } = useLanguage();
+  const item = getCase(slug, lang);
 
   if (!item) {
     notFound();

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SiteFooter, SiteHeader } from "./components/site-shell";
-import { cases, products, type ProductRecord } from "./lib/site-data";
+import { getLocalizedProducts, getLocalizedCases, type ProductRecord } from "./lib/site-data";
 import {
   FadeInUp,
   StaggerContainer,
@@ -12,6 +13,7 @@ import {
 import { useLanguage } from "./context/LanguageContext";
 
 function ProductCard({ product }: { product: ProductRecord }) {
+  const { t } = useLanguage();
   const isDev = product.slug === "tebot";
   return (
     <Link
@@ -29,7 +31,7 @@ function ProductCard({ product }: { product: ProductRecord }) {
             <p className="text-sm font-medium text-white">{product.name}</p>
             {isDev && (
               <span className="rounded-full border border-[var(--accent-violet)]/40 px-2 py-0.5 text-[10px] text-[var(--accent-violet)]">
-                开发中
+                {t.products.status_dev}
               </span>
             )}
           </div>
@@ -97,37 +99,49 @@ function ProductSection({
           </Link>
         </FadeInUp>
 
-        {/* Visual — terminal-style status panel */}
+        {/* Visual — hero image or terminal-style status panel */}
         <FadeInUp
           delay={0.1}
           className={reverse ? "lg:[direction:ltr]" : ""}
         >
-          <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
-              <span className="h-2 w-2 rounded-full bg-[#ff5f57] sm:h-2.5 sm:w-2.5" />
-              <span className="h-2 w-2 rounded-full bg-[#febc2e] sm:h-2.5 sm:w-2.5" />
-              <span className="h-2 w-2 rounded-full bg-[#28c840] sm:h-2.5 sm:w-2.5" />
-              <span className="ml-2 text-[11px] text-[var(--text-tertiary)] sm:ml-3 sm:text-xs">
-                {product.visual.title}
-              </span>
+          {product.slug === "tebot" ? (
+            <div className="overflow-hidden rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-card)]">
+              <Image
+                src="/tebot-hero.png"
+                alt="TEBOT"
+                width={600}
+                height={600}
+                className="h-auto w-full object-cover"
+              />
             </div>
-            <div className="space-y-2 p-4 font-mono text-xs sm:p-5 sm:text-sm">
-              {product.visual.lines.map((line, i) => (
-                <p key={i} className="text-[var(--text-secondary)]">
-                  <span className="text-[var(--accent-teal)]">▸</span> {line}
-                </p>
-              ))}
-            </div>
-            <div className="border-t border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
-              <div className="flex items-center justify-between text-[11px] text-[var(--text-tertiary)] sm:text-xs">
-                <span>{product.heroLabel}</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-teal)]" />
-                  {product.status}
+          ) : (
+            <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-card)]">
+              <div className="flex items-center gap-2 border-b border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
+                <span className="h-2 w-2 rounded-full bg-[#ff5f57] sm:h-2.5 sm:w-2.5" />
+                <span className="h-2 w-2 rounded-full bg-[#febc2e] sm:h-2.5 sm:w-2.5" />
+                <span className="h-2 w-2 rounded-full bg-[#28c840] sm:h-2.5 sm:w-2.5" />
+                <span className="ml-2 text-[11px] text-[var(--text-tertiary)] sm:ml-3 sm:text-xs">
+                  {product.visual.title}
                 </span>
               </div>
+              <div className="space-y-2 p-4 font-mono text-xs sm:p-5 sm:text-sm">
+                {product.visual.lines.map((line, i) => (
+                  <p key={i} className="text-[var(--text-secondary)]">
+                    <span className="text-[var(--accent-teal)]">▸</span> {line}
+                  </p>
+                ))}
+              </div>
+              <div className="border-t border-[var(--border-default)] px-4 py-2.5 sm:px-5 sm:py-3">
+                <div className="flex items-center justify-between text-[11px] text-[var(--text-tertiary)] sm:text-xs">
+                  <span>{product.heroLabel}</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-teal)]" />
+                    {product.status}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </FadeInUp>
       </div>
     </section>
@@ -136,12 +150,15 @@ function ProductSection({
 
 // Product display order per spec: Nexus, Prism, ProBrief, TEBOT
 const productOrder = ["nexus", "prism", "probrief", "tebot"] as const;
-const orderedProducts = productOrder
-  .map((slug) => products.find((p) => p.slug === slug)!)
-  .filter(Boolean);
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const localProducts = getLocalizedProducts(lang);
+  const localCases = getLocalizedCases(lang);
+  const orderedProducts = productOrder
+    .map((slug) => localProducts.find((p) => p.slug === slug)!)
+    .filter(Boolean);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <SiteHeader />
@@ -226,7 +243,7 @@ export default function Home() {
             </FadeInUp>
 
             <div className="mt-12 grid gap-4">
-              {cases.map((item) => (
+              {localCases.map((item) => (
                 <FadeInUp key={item.slug}>
                   <Link
                     href={`/cases/${item.slug}`}

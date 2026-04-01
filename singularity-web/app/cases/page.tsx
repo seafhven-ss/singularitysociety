@@ -1,20 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { cases } from "../lib/site-data";
+import { getLocalizedCases } from "../lib/site-data";
 import { PageSection, SiteFooter, SiteHeader } from "../components/site-shell";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function CasesPage() {
+  const { t, lang } = useLanguage();
+  const localCases = getLocalizedCases(lang);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <SiteHeader />
       <main>
         <PageSection
           eyebrow="Cases"
-          title="案例页模板"
-          description="这轮先把模板和首个 Prism 案例页建立起来，结构固定为背景、挑战、方案、结果。"
+          title={t.cases_page.title}
+          description={t.cases_page.desc}
         >
           <div className="grid gap-4">
-            {cases.map((item) => (
+            {localCases.map((item) => (
               <Link
                 key={item.slug}
                 href={`/cases/${item.slug}`}
@@ -24,7 +30,7 @@ export default function CasesPage() {
                 <h2 className="mt-4 text-3xl font-semibold text-white">{item.name}</h2>
                 <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--text-secondary)]">{item.summary}</p>
                 <div className="mt-8 inline-flex items-center gap-2 text-sm text-white">
-                  进入案例
+                  {t.cases_page.enter_case}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </Link>

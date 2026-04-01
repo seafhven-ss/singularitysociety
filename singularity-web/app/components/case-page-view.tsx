@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import type { CaseRecord } from "../lib/site-data";
 import { ActionButtons, PageSection, SiteFooter, SiteHeader } from "./site-shell";
+import { useLanguage } from "../context/LanguageContext";
 
 function CaseNarrativeBlock({ title, body }: { title: string; body: string[] }) {
   return (
@@ -18,6 +21,8 @@ function CaseNarrativeBlock({ title, body }: { title: string; body: string[] }) 
 }
 
 export function CasePageView({ item }: { item: CaseRecord }) {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <SiteHeader />
@@ -57,7 +62,7 @@ export function CasePageView({ item }: { item: CaseRecord }) {
           </div>
         </section>
 
-        <PageSection eyebrow="Narrative" title="案例叙事" description="用接近 Metalab / Suno 的滚动叙事方式拆开问题与解法，每一段只承载一个信息焦点。">
+        <PageSection eyebrow={t.case_detail.narrative_eyebrow} title={t.case_detail.narrative_title} description={t.case_detail.narrative_desc}>
           <div className="grid gap-4">
             <CaseNarrativeBlock title={item.background.title} body={item.background.body} />
             <CaseNarrativeBlock title={item.challenge.title} body={item.challenge.body} />
@@ -66,11 +71,11 @@ export function CasePageView({ item }: { item: CaseRecord }) {
           </div>
         </PageSection>
 
-        <PageSection eyebrow="CTA" title="继续查看" description="案例页不是终点。可以继续进入产品页，或者直接发起沟通。">
+        <PageSection eyebrow={t.case_detail.cta_eyebrow} title={t.case_detail.cta_title} description={t.case_detail.cta_desc}>
           <div className="flex flex-col gap-6 rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6 sm:p-8">
             <ActionButtons actions={item.cta} />
             <Link href="/cases" className="text-sm text-[var(--text-secondary)] underline-offset-4 hover:text-white hover:underline">
-              返回案例列表
+              {t.case_detail.back_to_list}
             </Link>
           </div>
         </PageSection>

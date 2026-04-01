@@ -1,4 +1,5 @@
 import { Bot, Boxes, Cpu, GitBranch, MessageSquareText, PackageSearch, Sparkles, Workflow } from "lucide-react";
+import type { Lang } from "../constants/translations";
 
 export type ProductSlug = "tebot" | "nexus" | "probrief" | "prism";
 export type CaseSlug = "prism-launch";
@@ -63,13 +64,43 @@ export type CaseRecord = {
   cta: ProductAction[];
 };
 
-export const products: ProductRecord[] = [
+// ── Shared non-translatable fields ──
+
+const productIcons = {
+  tebot: Sparkles,
+  nexus: Bot,
+  probrief: Workflow,
+  prism: MessageSquareText,
+} as const;
+
+const productVisuals: Record<ProductSlug, ProductRecord["visual"]> = {
+  tebot: {
+    title: "Workbench Snapshot",
+    lines: ["Audio module online", "Character layer aligned", "Hardware test in progress", "Public build log enabled"],
+  },
+  nexus: {
+    title: "Execution Thread",
+    lines: ["Task accepted", "Repo inspected", "Patch applied", "Verification returned"],
+  },
+  probrief: {
+    title: "Brief Pipeline",
+    lines: ["Raw request captured", "Rules validated", "Sections generated", "Delivery doc exported"],
+  },
+  prism: {
+    title: "Launch Snapshot",
+    lines: ["QQ connected", "Runtime online", "Model selected", "Installer packaged"],
+  },
+};
+
+// ── Chinese products ──
+
+const productsZh: ProductRecord[] = [
   {
     slug: "tebot",
     name: "TEBOT",
     shortName: "淘小枫 × 奇点社",
     status: "开发中 · 最高优先级",
-    positioning: "淘小枫 × 奇点社：国内首个能听懂你说话的 AI 桌面手办",
+    positioning: "淘小枫 × 奇点社：携手打造国内首个能听懂你说话的 AI 桌面手办",
     summary: "把经典角色从屏幕带到桌面。不是摆件加语音包，而是持续在线的互动终端。",
     heroEyebrow: "Product / Desktop Companion",
     heroLabel: "联合打造 · IP + AI + 硬件",
@@ -81,7 +112,7 @@ export const products: ProductRecord[] = [
     features: [
       {
         title: "保留角色辨识度",
-        description: "淘小枫与奇点社并列呈现，视觉与语气都服务角色生命力，而不是套一个 AI 壳。",
+        description: "淘小枫与奇点社携手呈现，视觉与语气都服务角色生命力，而不是套一个 AI 壳。",
         detail: "角色信息、语气约束、对话边界写入交互层，避免失真。",
       },
       {
@@ -104,14 +135,11 @@ export const products: ProductRecord[] = [
       { label: "构建日志", note: "进度面板 / 开发记录" },
     ],
     actions: [
-      { label: "关注开发进度", href: "mailto:seafhven@gmail.com", variant: "primary" },
-      { label: "联系咨询合作", href: "mailto:seafhven@gmail.com", variant: "secondary" },
+      { label: "关注开发进度", href: "/contact", variant: "primary" },
+      { label: "联系咨询合作", href: "/contact", variant: "secondary" },
     ],
-    icon: Sparkles,
-    visual: {
-      title: "Workbench Snapshot",
-      lines: ["Audio module online", "Character layer aligned", "Hardware test in progress", "Public build log enabled"],
-    },
+    icon: productIcons.tebot,
+    visual: productVisuals.tebot,
   },
   {
     slug: "nexus",
@@ -158,14 +186,11 @@ export const products: ProductRecord[] = [
       { label: "Remote Tools", note: "ComfyUI / 局域网工作站" },
     ],
     actions: [
-      { label: "联系咨询", href: "mailto:seafhven@gmail.com", variant: "primary" },
+      { label: "联系咨询", href: "/contact", variant: "primary" },
       { label: "查看案例", href: "/cases/prism-launch", variant: "secondary" },
     ],
-    icon: Bot,
-    visual: {
-      title: "Execution Thread",
-      lines: ["Task accepted", "Repo inspected", "Patch applied", "Verification returned"],
-    },
+    icon: productIcons.nexus,
+    visual: productVisuals.nexus,
   },
   {
     slug: "probrief",
@@ -207,14 +232,11 @@ export const products: ProductRecord[] = [
       { label: "Brief Export", note: "可共享输出文档" },
     ],
     actions: [
-      { label: "查看 GitHub", href: "https://github.com/", variant: "primary" },
-      { label: "联系咨询", href: "mailto:seafhven@gmail.com", variant: "secondary" },
+      { label: "在线体验", href: "https://probrief.singularity-society.com", variant: "primary" },
+      { label: "查看 GitHub", href: "https://github.com/seafhven-ss/brief-builder", variant: "secondary" },
     ],
-    icon: Workflow,
-    visual: {
-      title: "Brief Pipeline",
-      lines: ["Raw request captured", "Rules validated", "Sections generated", "Delivery doc exported"],
-    },
+    icon: productIcons.probrief,
+    visual: productVisuals.probrief,
   },
   {
     slug: "prism",
@@ -262,17 +284,215 @@ export const products: ProductRecord[] = [
     ],
     actions: [
       { label: "查看案例", href: "/cases/prism-launch", variant: "primary" },
-      { label: "联系体验", href: "mailto:seafhven@gmail.com", variant: "secondary" },
+      { label: "联系体验", href: "/contact", variant: "secondary" },
     ],
-    icon: MessageSquareText,
-    visual: {
-      title: "Launch Snapshot",
-      lines: ["QQ connected", "Runtime online", "Model selected", "Installer packaged"],
-    },
+    icon: productIcons.prism,
+    visual: productVisuals.prism,
   },
 ];
 
-export const cases: CaseRecord[] = [
+// ── English products ──
+
+const productsEn: ProductRecord[] = [
+  {
+    slug: "tebot",
+    name: "TEBOT",
+    shortName: "Taoxiaofeng × Singularity Society",
+    status: "In Development · Top Priority",
+    positioning: "Taoxiaofeng × Singularity Society: Building China's first AI desktop figurine that understands your voice",
+    summary: "Bringing a beloved character from screen to desktop. Not a figurine with voice packs — a continuously online interactive terminal.",
+    heroEyebrow: "Product / Desktop Companion",
+    heroLabel: "Co-built · IP + AI + Hardware",
+    metrics: [
+      { label: "Partnership", value: "IP License + Software + Hardware" },
+      { label: "Current Phase", value: "Hardware Testing" },
+      { label: "Interaction", value: "Listen, Speak, Companion" },
+    ],
+    features: [
+      {
+        title: "Preserving Character Identity",
+        description: "Taoxiaofeng and Singularity Society presented together — visuals and tone serve the character's vitality, not just an AI shell.",
+        detail: "Character info, tone constraints, and conversation boundaries are built into the interaction layer.",
+      },
+      {
+        title: "Powered by Prism Engine",
+        description: "Migrating deployable IM conversation capabilities to the desktop terminal, reducing hardware-side complexity.",
+        detail: "Voice input, intent recognition, and response generation are split into independent stages for modular upgrades.",
+      },
+      {
+        title: "Public Build Progress",
+        description: "Concept art, version logs, and hardware integration status are shown directly — the build process itself becomes the product narrative.",
+        detail: "No hidden limitations, no pre-sale rhetoric replacing real progress.",
+      },
+    ],
+    architectureTitle: "Architecture Overview",
+    architectureDescription: "Currently centered on the voice interaction pipeline, with hardware shell and content personality handled in separate layers for rapid validation.",
+    architectureNodes: [
+      { label: "Desktop Terminal", note: "Mic / Speaker / Status LED" },
+      { label: "Prism Engine", note: "Intent / Response" },
+      { label: "Character Layer", note: "Persona / Tone Rules" },
+      { label: "Build Log", note: "Progress / Dev Records" },
+    ],
+    actions: [
+      { label: "Follow Progress", href: "/contact", variant: "primary" },
+      { label: "Get in Touch", href: "/contact", variant: "secondary" },
+    ],
+    icon: productIcons.tebot,
+    visual: productVisuals.tebot,
+  },
+  {
+    slug: "nexus",
+    name: "Nexus",
+    shortName: "Telegram Execution Assistant",
+    status: "Internal Use · Continuous Iteration",
+    positioning: "Your Telegram AI execution assistant — with memory, coding, and image generation",
+    summary: "Research, code changes, fact-checking, and image generation in one context — reducing the cost of switching tools.",
+    heroEyebrow: "Product / Execution Console",
+    heroLabel: "Telegram + CLI + Memory",
+    metrics: [
+      { label: "Entry Point", value: "Telegram Bot" },
+      { label: "Task Types", value: "Code / Search / Image Gen" },
+      { label: "Context", value: "Persistent Memory" },
+    ],
+    features: [
+      {
+        title: "Persistent Task Context",
+        description: "Records long-term constraints, current focus, and recent actions — every execution isn't reset to a blank conversation.",
+        detail: "Ideal for continuous product development and operations work.",
+      },
+      {
+        title: "Direct Code & System Access",
+        description: "Not just advice — it can modify files, run commands, verify results, and report back to Telegram.",
+        detail: "Short execution chain, built for fast-paced iteration.",
+      },
+      {
+        title: "Unified Remote Capabilities",
+        description: "ComfyUI, image generation workstations, and multiple CLI models exposed through unified dispatch.",
+        detail: "Users describe tasks, not tool switches.",
+      },
+      {
+        title: "Execution Trail",
+        description: "Plans, modifications, verifications, and failure points are all traceable — supporting public builds and periodic reviews.",
+        detail: "The execution record itself is a trust asset.",
+      },
+    ],
+    architectureTitle: "Architecture Overview",
+    architectureDescription: "Nexus isn't a model — it's an executable task bus that binds conversation, memory, and external tools together.",
+    architectureNodes: [
+      { label: "Telegram", note: "User Entry / Task Input" },
+      { label: "Memory Layer", note: "Long-term / Restart Recovery" },
+      { label: "CLI Agents", note: "Codex / Claude / Kimi" },
+      { label: "Remote Tools", note: "ComfyUI / LAN Workstation" },
+    ],
+    actions: [
+      { label: "Contact Us", href: "/contact", variant: "primary" },
+      { label: "View Case", href: "/cases/prism-launch", variant: "secondary" },
+    ],
+    icon: productIcons.nexus,
+    visual: productVisuals.nexus,
+  },
+  {
+    slug: "probrief",
+    name: "ProBrief",
+    shortName: "Structured Proposal Tool",
+    status: "Delivered · Open Source",
+    positioning: "AI-powered structured proposal tool — turning vague requirements into professional briefs",
+    summary: "No more piecing together requirements from long chat threads. Organize needs into assessable, splittable, actionable documents.",
+    heroEyebrow: "Product / Structured Intake",
+    heroLabel: "Open Source Delivery Tool",
+    metrics: [
+      { label: "Status", value: "Deployed / Open Source" },
+      { label: "Output", value: "6-Module Brief" },
+      { label: "Architecture", value: "Rule Engine + LLM" },
+    ],
+    features: [
+      {
+        title: "Compress Input into Structure",
+        description: "Maps fragmented descriptions to fixed modules, preventing requirements from drifting in chat.",
+        detail: "Narrow the boundaries first, then discuss solutions.",
+      },
+      {
+        title: "Rules Guard Industry Knowledge",
+        description: "Critical field validation and conflict checks are handled by the rule layer, not the model.",
+        detail: "In real proposal scenarios, stability matters more than creativity.",
+      },
+      {
+        title: "Output Ready for Delivery",
+        description: "The generated brief isn't marketing copy — it's a working document for designers, developers, and clients alike.",
+        detail: "Reduces redundant formatting and repeated confirmations.",
+      },
+    ],
+    architectureTitle: "Architecture Overview",
+    architectureDescription: "ProBrief uses a lightweight hybrid architecture — rules lock down structure, then the model generates high-density text.",
+    architectureNodes: [
+      { label: "Input Form", note: "Background / Goals / Constraints" },
+      { label: "Rule Engine", note: "Validation / Conflict Filter" },
+      { label: "LLM Layer", note: "Structured Gen / Polish" },
+      { label: "Brief Export", note: "Shareable Document" },
+    ],
+    actions: [
+      { label: "Try Online", href: "https://probrief.singularity-society.com", variant: "primary" },
+      { label: "View GitHub", href: "https://github.com/seafhven-ss/brief-builder", variant: "secondary" },
+    ],
+    icon: productIcons.probrief,
+    visual: productVisuals.probrief,
+  },
+  {
+    slug: "prism",
+    name: "Prism",
+    shortName: "QQ AI Assistant",
+    status: "In Beta",
+    positioning: "A QQ AI assistant for everyday users — one-click install, ready to go",
+    summary: "Compressing what used to require understanding models, environments, and deployment into an IM entry point anyone can use.",
+    heroEyebrow: "Product / IM Assistant",
+    heroLabel: "QQ Native · Low Setup",
+    metrics: [
+      { label: "Platform", value: "QQ" },
+      { label: "Target Users", value: "Everyday Users / Resellers" },
+      { label: "Setup Barrier", value: "One-Click Install" },
+    ],
+    features: [
+      {
+        title: "Native QQ Experience",
+        description: "No migration to a new interface — use AI directly in the familiar IM environment.",
+        detail: "The more familiar the entry point, the lower the adoption cost.",
+      },
+      {
+        title: "Minimal Setup Complexity",
+        description: "Users see install and launch. Environment prep, engine switching, and config are hidden behind the scenes.",
+        detail: "Reducing first-trial failure rate.",
+      },
+      {
+        title: "Extensible Agent Capabilities",
+        description: "Prism isn't a single-turn chat shell — workflows, memory, and external tools can be layered on.",
+        detail: "Start with a usable entry point, then deepen capabilities.",
+      },
+      {
+        title: "Ready for Reseller Delivery",
+        description: "Out-of-the-box for end users, replicable delivery format for service providers.",
+        detail: "Balancing consumer use and lightweight service scenarios.",
+      },
+    ],
+    architectureTitle: "Architecture Overview",
+    architectureDescription: "Prism prioritizes local deployability and low config, separating the QQ entry, model engine, and installer logic.",
+    architectureNodes: [
+      { label: "QQ Client", note: "Message Entry" },
+      { label: "Prism Runtime", note: "Orchestration / Sessions" },
+      { label: "Model Engine", note: "Kimi / OpenCode" },
+      { label: "Installer", note: "One-Click / Updates" },
+    ],
+    actions: [
+      { label: "View Case", href: "/cases/prism-launch", variant: "primary" },
+      { label: "Get in Touch", href: "/contact", variant: "secondary" },
+    ],
+    icon: productIcons.prism,
+    visual: productVisuals.prism,
+  },
+];
+
+// ── Chinese cases ──
+
+const casesZh: CaseRecord[] = [
   {
     slug: "prism-launch",
     name: "Prism 首个公开案例",
@@ -304,7 +524,7 @@ export const cases: CaseRecord[] = [
       title: "方案",
       body: [
         "方案拆成三层：先保留 QQ 原生交互，再把运行时和模型引擎分层，最后单独设计安装与更新逻辑。",
-        "视觉表达上不强调 AI 炫技，而是把“可安装、可启动、可持续迭代”作为主叙事，让产品更像一个安静可靠的工具。",
+        "视觉表达上不强调 AI 炫技，而是把「可安装、可启动、可持续迭代」作为主叙事，让产品更像一个安静可靠���工具。",
       ],
     },
     results: {
@@ -316,17 +536,85 @@ export const cases: CaseRecord[] = [
     },
     cta: [
       { label: "查看 Prism 产品页", href: "/products/prism", variant: "primary" },
-      { label: "联系咨询", href: "mailto:seafhven@gmail.com", variant: "secondary" },
+      { label: "联系咨询", href: "/contact", variant: "secondary" },
     ],
   },
 ];
 
-export function getProduct(slug: string) {
-  return products.find((product) => product.slug === slug);
+// ── English cases ──
+
+const casesEn: CaseRecord[] = [
+  {
+    slug: "prism-launch",
+    name: "Prism: First Public Case",
+    category: "Case / Consumer AI",
+    year: "2026",
+    summary: "Rebuilding an AI assistant for everyday users — from a technical product requiring environment and model explanations to a lightweight QQ-native entry point.",
+    stats: [
+      { label: "Delivery Goal", value: "QQ Native Entry" },
+      { label: "Core Constraint", value: "One-Click Install" },
+      { label: "Current Status", value: "In Beta" },
+    ],
+    coverTitle: "Prism Case Narrative",
+    coverLines: ["Audience: non-technical users", "Constraint: keep QQ native", "Approach: hide setup complexity", "Outcome: ready-for-beta package"],
+    background: {
+      title: "Background",
+      body: [
+        "The goal wasn't to build another AI chat shell for technical users — it was to turn QQ, which ordinary people already use, into an AI entry point.",
+        "If users still need to understand model differences, environment configuration, and command lines, the product hasn't truly entered the mass-market scenario.",
+      ],
+    },
+    challenge: {
+      title: "Challenge",
+      body: [
+        "QQ is a familiar entry point, but that also means the implementation must be restrained. Any extra configuration, complex instructions, or new concepts will directly increase churn.",
+        "At the same time, the product needs to leave room for future agent capabilities — you can't bake everything into a one-time installer.",
+      ],
+    },
+    approach: {
+      title: "Approach",
+      body: [
+        "The solution was split into three layers: preserve QQ-native interaction first, separate runtime and model engine second, and design installation and update logic independently.",
+        "Visual expression avoids AI showmanship — the core narrative is 'installable, launchable, and continuously iterable', making the product feel like a quiet, reliable tool.",
+      ],
+    },
+    results: {
+      title: "Results",
+      body: [
+        "Prism has reached a beta-ready product form with QQ entry, one-click install, and an extensible runtime architecture.",
+        "This case proves not the effectiveness of any single model, but Singularity Society's delivery method for consumer AI: lower the adoption barrier first, then gradually raise the capability ceiling.",
+      ],
+    },
+    cta: [
+      { label: "View Prism Product", href: "/products/prism", variant: "primary" },
+      { label: "Contact Us", href: "/contact", variant: "secondary" },
+    ],
+  },
+];
+
+// ── Localized accessors ──
+
+const productsMap: Record<Lang, ProductRecord[]> = { zh: productsZh, en: productsEn };
+const casesMap: Record<Lang, CaseRecord[]> = { zh: casesZh, en: casesEn };
+
+export function getLocalizedProducts(lang: Lang): ProductRecord[] {
+  return productsMap[lang];
 }
 
-export function getCase(slug: string) {
-  return cases.find((item) => item.slug === slug);
+export function getLocalizedCases(lang: Lang): CaseRecord[] {
+  return casesMap[lang];
+}
+
+// Backward compat — default to Chinese
+export const products = productsZh;
+export const cases = casesZh;
+
+export function getProduct(slug: string, lang: Lang = "zh") {
+  return productsMap[lang].find((p) => p.slug === slug);
+}
+
+export function getCase(slug: string, lang: Lang = "zh") {
+  return casesMap[lang].find((item) => item.slug === slug);
 }
 
 export const globalCards = [

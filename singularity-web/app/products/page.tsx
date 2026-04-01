@@ -1,20 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { products } from "../lib/site-data";
+import { getLocalizedProducts } from "../lib/site-data";
 import { PageSection, SiteFooter, SiteHeader } from "../components/site-shell";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ProductsPage() {
+  const { t, lang } = useLanguage();
+  const localProducts = getLocalizedProducts(lang);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <SiteHeader />
       <main>
         <PageSection
           eyebrow="Products"
-          title="四个产品节点"
-          description="产品名降一级，方法论升一级。这里按当前产品线展开，每个页面都只说明一个明确问题如何被处理。"
+          title={t.products.page_title}
+          description={t.products.page_desc}
         >
           <div className="grid gap-4 lg:grid-cols-2">
-            {products.map((product) => {
+            {localProducts.map((product) => {
               const Icon = product.icon;
               return (
                 <Link
@@ -33,7 +39,7 @@ export default function ProductsPage() {
                   <h2 className="mt-6 text-3xl font-semibold text-white">{product.name}</h2>
                   <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">{product.positioning}</p>
                   <div className="mt-8 inline-flex items-center gap-2 text-sm text-white">
-                    查看详情
+                    {t.products.view_detail}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </Link>

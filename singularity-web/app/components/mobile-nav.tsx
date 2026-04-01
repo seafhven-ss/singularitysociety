@@ -3,17 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const gradientBrand = "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)";
 
-const navLinks = [
-  { href: "/products", label: "Products" },
-  { href: "/cases", label: "Cases" },
-  { href: "/about", label: "About" },
-];
-
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const { t, lang, toggleLanguage } = useLanguage();
+
+  const navLinks = [
+    { href: "/products", label: t.nav.products },
+    { href: "/cases", label: t.nav.cases },
+    { href: "/about", label: t.nav.about },
+  ];
 
   return (
     <div className="lg:hidden">
@@ -39,13 +41,20 @@ export function MobileNav() {
                 {link.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={() => { toggleLanguage(); setOpen(false); }}
+              className="rounded-lg px-4 py-3 text-left text-sm text-[var(--text-tertiary)] transition-colors hover:bg-[var(--bg-panel)] hover:text-white"
+            >
+              {lang === "zh" ? "English" : "中文"}
+            </button>
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-black"
               style={{ backgroundImage: gradientBrand }}
             >
-              Contact
+              {t.nav.contact}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </nav>

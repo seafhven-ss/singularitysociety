@@ -1,8 +1,13 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import type { ProductRecord } from "../lib/site-data";
 import { ActionButtons, PageSection, SiteFooter, SiteHeader } from "./site-shell";
+import { useLanguage } from "../context/LanguageContext";
 
 export function ProductPageView({ product }: { product: ProductRecord }) {
+  const { t } = useLanguage();
   const Icon = product.icon;
 
   return (
@@ -33,40 +38,53 @@ export function ProductPageView({ product }: { product: ProductRecord }) {
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-5 shadow-[var(--shadow-elevated)] sm:p-6">
-              <div className="rounded-[24px] border border-[var(--border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))] p-5">
-                <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-4">
-                  <div>
-                    <p className="text-sm font-medium text-white">{product.visual.title}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)]">{product.status}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-indigo)]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-teal)]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-violet)]" />
-                  </div>
-                </div>
-                <div className="mt-5 space-y-3">
-                  {product.visual.lines.map((line, index) => (
-                    <div key={line} className="flex items-center justify-between rounded-2xl border border-[var(--border-default)] bg-black/20 px-4 py-4 text-sm text-[var(--text-secondary)]">
-                      <span>{line}</span>
-                      <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[var(--text-tertiary)]">
-                        0{index + 1}
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </span>
+            {product.slug === "tebot" ? (
+              <div className="overflow-hidden rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] shadow-[var(--shadow-elevated)]">
+                <Image
+                  src="/tebot-hero.png"
+                  alt="TEBOT"
+                  width={600}
+                  height={600}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-5 shadow-[var(--shadow-elevated)] sm:p-6">
+                <div className="rounded-[24px] border border-[var(--border-default)] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))] p-5">
+                  <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-4">
+                    <div>
+                      <p className="text-sm font-medium text-white">{product.visual.title}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)]">{product.status}</p>
                     </div>
-                  ))}
+                    <div className="flex gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-indigo)]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-teal)]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent-violet)]" />
+                    </div>
+                  </div>
+                  <div className="mt-5 space-y-3">
+                    {product.visual.lines.map((line, index) => (
+                      <div key={line} className="flex items-center justify-between rounded-2xl border border-[var(--border-default)] bg-black/20 px-4 py-4 text-sm text-[var(--text-secondary)]">
+                        <span>{line}</span>
+                        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[var(--text-tertiary)]">
+                          0{index + 1}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
-        <PageSection eyebrow="Features" title="功能亮点" description="用 Linear 式的信息层级展开重点能力。每一项都对应一个真实的使用场景，而不是泛化卖点。">
+        <PageSection eyebrow={t.product_detail.features_eyebrow} title={t.product_detail.features_title} description={t.product_detail.features_desc}>
           <div className="grid gap-4 lg:grid-cols-2">
             {product.features.map((feature) => (
               <article key={feature.title} className="rounded-[24px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6">
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-tertiary)]">Feature</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-tertiary)]">{t.product_detail.feature_label}</p>
                 <h3 className="mt-4 text-2xl font-semibold text-white">{feature.title}</h3>
                 <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">{feature.description}</p>
                 <div className="mt-6 rounded-2xl border border-[var(--border-default)] bg-black/20 p-4 text-sm leading-7 text-[var(--text-secondary)]">
@@ -92,13 +110,13 @@ export function ProductPageView({ product }: { product: ProductRecord }) {
           </div>
         </PageSection>
 
-        <PageSection eyebrow="CTA" title="下一步" description="如果这个产品方向与你当前的问题对得上，直接进入体验、代码或联系入口。">
+        <PageSection eyebrow={t.product_detail.cta_eyebrow} title={t.product_detail.cta_title} description={t.product_detail.cta_desc}>
           <div className="rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6 sm:p-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
               <div>
                 <p className="text-sm font-medium text-white">{product.shortName}</p>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--text-secondary)]">
-                  当前状态：{product.status}。页面内容按真实进度组织，没有把概念图包装成已完成产品。
+                  {t.product_detail.current_status}：{product.status}。{t.product_detail.status_note}
                 </p>
               </div>
               <ActionButtons actions={product.actions} />
