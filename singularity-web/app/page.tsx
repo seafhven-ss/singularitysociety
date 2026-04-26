@@ -148,8 +148,7 @@ function ProductSection({
   );
 }
 
-// Product display order per spec: Nexus, Prism, ProBrief, TEBOT
-const productOrder = ["nexus", "prism", "probrief", "tebot"] as const;
+const productOrder = ["tebot", "nexus", "probrief", "prism"] as const;
 
 export default function Home() {
   const { t, lang } = useLanguage();

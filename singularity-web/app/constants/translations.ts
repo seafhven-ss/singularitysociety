@@ -62,8 +62,9 @@ export const translations = {
       milestones: [
         { year: "2011", text: "空间设计行业入行，开始 15 年的甲方乙方经验积累" },
         { year: "2025", text: "创立奇点社，把 AI 从辅助工具变成核心生产力" },
-        { year: "2026", text: "Prism、Nexus、ProBrief 相继完成可用版本" },
-        { year: "2026", text: "TEBOT 桌面手办立项，开启 IP × AI × 硬件的新方向" },
+        { year: "2026", text: "Prism、Nexus、ProBrief 相继完成可用版本；Atelier、Pincer 等本地工具上线" },
+        { year: "2026", text: "TEBOT 桌面手办立项，外观 v2.7 定稿，开启 IP × AI × 硬件的新方向" },
+        { year: "2026", text: "首个 B2B 品牌客户协作：为瑞士放射防护品牌 WIROMA（经苏州盛博）做中国官网" },
       ],
       method_eyebrow: "Method",
       method_title: "工作方式",
@@ -159,8 +160,9 @@ export const translations = {
       milestones: [
         { year: "2011", text: "Entered the spatial design industry — 15 years of client and agency experience" },
         { year: "2025", text: "Founded Singularity Society, turning AI from a side tool into core productivity" },
-        { year: "2026", text: "Prism, Nexus, and ProBrief reach usable product status" },
-        { year: "2026", text: "TEBOT desktop figurine launched — IP × AI × Hardware" },
+        { year: "2026", text: "Prism, Nexus, ProBrief reach usable product status; Atelier and Pincer ship as local tools" },
+        { year: "2026", text: "TEBOT desktop figurine — exterior v2.7 locked, opening the IP × AI × Hardware direction" },
+        { year: "2026", text: "First B2B brand client: built the China site for Swiss radiation-shielding brand WIROMA, with their China distributor in Suzhou" },
       ],
       method_eyebrow: "Method",
       method_title: "How We Work",
