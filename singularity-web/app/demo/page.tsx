@@ -100,7 +100,7 @@ export default function DemoPage() {
                   </p>
                   <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                     <Link
-                      href="/geo-diagnosis"
+                      href="/demo/report"
                       className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
                       style={{ backgroundImage: gradientBrand }}
                     >
@@ -248,7 +248,7 @@ export default function DemoPage() {
                     我们会用一个虚拟企业样例展示 AI 可见性评分、问题库、回答分析、内容缺口和优化建议。
                   </p>
                   <Link
-                    href="/geo-diagnosis"
+                    href="/demo/report"
                     className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
                     style={{ backgroundImage: gradientBrand }}
                   >
