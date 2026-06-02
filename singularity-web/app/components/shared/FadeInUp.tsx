@@ -21,9 +21,11 @@ export function FadeInUp({
   const [visible, setVisible] = useState(false); // element scrolled into view
 
   useEffect(() => {
-    setReady(true);
+    const readyFrame = window.requestAnimationFrame(() => setReady(true));
     const el = ref.current;
-    if (!el) return;
+    if (!el) {
+      return () => window.cancelAnimationFrame(readyFrame);
+    }
 
     // Safety fallback: if observer never fires within 1.5s, show content anyway
     const fallback = setTimeout(() => setVisible(true), 1500);
@@ -40,6 +42,7 @@ export function FadeInUp({
     );
     observer.observe(el);
     return () => {
+      window.cancelAnimationFrame(readyFrame);
       clearTimeout(fallback);
       observer.disconnect();
     };

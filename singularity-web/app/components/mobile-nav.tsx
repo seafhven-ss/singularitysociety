@@ -12,9 +12,13 @@ export function MobileNav() {
   const { t, lang, toggleLanguage } = useLanguage();
 
   const navLinks = [
-    { href: "/products", label: t.nav.products },
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/geo-diagnosis", label: t.nav.diagnosis },
+    { href: "/demo", label: t.nav.demo },
     { href: "/cases", label: t.nav.cases },
     { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   return (
@@ -49,12 +53,12 @@ export function MobileNav() {
               {lang === "zh" ? "English" : "中文"}
             </button>
             <Link
-              href="/contact"
+              href="/geo-diagnosis"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-black"
               style={{ backgroundImage: gradientBrand }}
             >
-              {t.nav.contact}
+              {t.nav.appointment}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </nav>

@@ -25,6 +25,16 @@ function actionStyle(variant: ProductAction["variant"]): React.CSSProperties | u
 
 export function SiteHeader() {
   const { t, lang, toggleLanguage } = useLanguage();
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/geo-diagnosis", label: t.nav.diagnosis },
+    { href: "/demo", label: t.nav.demo },
+    { href: "/cases", label: t.nav.cases },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
+
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-default)] bg-[rgba(10,10,10,0.88)] backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8">
@@ -36,16 +46,12 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
-          <Link href="/products" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            {t.nav.products}
-          </Link>
-          <Link href="/cases" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            {t.nav.cases}
-          </Link>
-          <Link href="/about" className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
-            {t.nav.about}
-          </Link>
+        <nav className="hidden items-center gap-5 lg:flex">
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="text-sm text-[var(--text-secondary)] transition-colors hover:text-white">
+              {link.label}
+            </Link>
+          ))}
           <button
             type="button"
             onClick={toggleLanguage}
@@ -53,8 +59,8 @@ export function SiteHeader() {
           >
             {lang === "zh" ? "EN" : "中"}
           </button>
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-[1.02]" style={{ backgroundImage: gradientBrand }}>
-            {t.nav.contact}
+          <Link href="/geo-diagnosis" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-[1.02]" style={{ backgroundImage: gradientBrand }}>
+            {t.nav.appointment}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </nav>
@@ -66,6 +72,16 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   const { t } = useLanguage();
+  const footerLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/geo-diagnosis", label: t.nav.diagnosis },
+    { href: "/demo", label: t.nav.demo },
+    { href: "/cases", label: t.nav.cases },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
+
   return (
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-primary)]">
       <div className="h-px w-full opacity-70" style={{ backgroundImage: gradientBrand }} />
@@ -75,18 +91,11 @@ export function SiteFooter() {
           <p className="mt-3 max-w-xs leading-7">{t.footer.tagline}</p>
         </div>
         <div className="space-y-2">
-          <Link href="/products" className="block hover:text-white">
-            {t.nav.products}
-          </Link>
-          <Link href="/cases" className="block hover:text-white">
-            {t.nav.cases}
-          </Link>
-          <Link href="/about" className="block hover:text-white">
-            {t.nav.about}
-          </Link>
-          <Link href="/contact" className="block hover:text-white">
-            {t.nav.contact}
-          </Link>
+          {footerLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="block hover:text-white">
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className="space-y-2">
           <a href="mailto:seafhven@gmail.com" className="block hover:text-white">

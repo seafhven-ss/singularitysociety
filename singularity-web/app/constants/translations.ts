@@ -1,10 +1,15 @@
 export const translations = {
   zh: {
     nav: {
+      home: "首页",
       products: "产品",
+      services: "服务",
+      diagnosis: "AI 可见性诊断",
+      demo: "工具演示",
       cases: "案例",
       about: "关于",
       contact: "联系",
+      appointment: "预约诊断",
     },
     hero: {
       eyebrow: "奇点社 / 公开构建中",
@@ -93,16 +98,21 @@ export const translations = {
       social_xiaohongshu: "小红书",
     },
     footer: {
-      tagline: "真实业务问题  轻量 AI 产品  公开构建",
+      tagline: "面向全品类中小型成长型企业的 AI 搜索增长与 GEO 赋能服务机构",
       location: "中国（江苏）自由贸易试验区苏州片区 苏州工业园区独墅湖数字经济产业园",
     },
   },
   en: {
     nav: {
+      home: "Home",
       products: "Products",
+      services: "Services",
+      diagnosis: "AI Visibility Diagnosis",
+      demo: "Tool Demo",
       cases: "Cases",
       about: "About",
       contact: "Contact",
+      appointment: "Book Diagnosis",
     },
     hero: {
       eyebrow: "Singularity Society / Built in Public",
@@ -191,7 +201,7 @@ export const translations = {
       social_xiaohongshu: "Xiaohongshu",
     },
     footer: {
-      tagline: "Real Business Problems  Lightweight AI Products  Built in Public",
+      tagline: "AI search growth and GEO enablement for growing small and midsize businesses.",
       location: "Dushu Lake Digital Economy Industrial Park, SIP, Suzhou, Jiangsu FTZ, China",
     },
   },

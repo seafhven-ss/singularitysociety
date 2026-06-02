@@ -20,8 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Singularity Society | \u5947\u70b9\u793e",
-  description: "\u771f\u5b9e\u4e1a\u52a1\u95ee\u9898 \u00d7 \u8f7b\u91cf AI \u4ea7\u54c1 \u00d7 \u516c\u5f00\u6784\u5efa",
+  title: "Singularity Society | AI 搜索增长与 GEO 赋能",
+  description: "面向全品类中小型成长型企业，帮助企业在 AI 搜索时代建立品牌可见性、内容资产和询盘转化系统。",
   icons: {
     icon: "/icon.png",
   },
