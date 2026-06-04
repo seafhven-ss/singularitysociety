@@ -98,6 +98,7 @@ const nextSteps = [
   "我们会先了解你的企业基础信息",
   "判断是否适合做 AI 可见性诊断",
   "如适合，会进一步确认测试平台和问题数量",
+  "我们会人工评估企业情况和诊断需求，确认测试范围后再安排正式诊断，不会自动生成报告",
   "诊断结果会用于辅助你了解 AI 搜索中的品牌可见性和内容资产缺口",
 ];
 
@@ -231,7 +232,7 @@ export function ContactForm() {
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent-teal)]" />
                       <p className="text-sm leading-7 text-[var(--text-secondary)]">
-                        已收到你的诊断申请。我们会根据你提供的企业信息，评估适合的 AI 可见性诊断方式。
+                        已收到你的诊断申请。我们会根据你提供的企业信息，人工评估适合的 AI 可见性诊断方式，并在确认测试范围后再安排正式诊断。
                       </p>
                     </div>
                   </div>

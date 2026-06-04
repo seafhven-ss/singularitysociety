@@ -205,6 +205,16 @@ export default function GeoDiagnosisPage() {
                 );
               })}
             </div>
+            <FadeInUp delay={0.12}>
+              <div className="mt-8 rounded-[24px] border border-[var(--border-default)] bg-[rgba(255,255,255,0.03)] p-5">
+                <div className="flex items-start gap-4">
+                  <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[var(--accent-teal)]" />
+                  <p className="text-sm leading-7 text-[var(--text-secondary)]">
+                    提交企业信息后，我们会先进行人工评估，确认行业、测试平台、问题数量和诊断范围，再生成正式诊断报告。
+                  </p>
+                </div>
+              </div>
+            </FadeInUp>
           </div>
         </section>
 

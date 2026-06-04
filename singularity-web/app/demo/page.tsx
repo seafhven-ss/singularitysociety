@@ -277,6 +277,9 @@ export default function DemoPage() {
                     <p className="mt-4 text-sm leading-7 text-[var(--text-tertiary)]">
                       目前 Singularity AI Growth Console 仍是内部演示和交付工具，暂不开放客户自助登录。客户可以通过预约演示了解完整流程。
                     </p>
+                    <p className="mt-3 text-sm leading-7 text-[var(--text-tertiary)]">
+                      当前为销售演示版，暂不开放客户自助登录。真实诊断报告需要提交申请，并由我们人工评估和确认测试范围后生成。
+                    </p>
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                       <ConsoleDemoButton
                         className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
