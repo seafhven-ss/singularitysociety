@@ -4,10 +4,14 @@ import {
   ArrowRight,
   BrainCircuit,
   CheckCircle2,
+  Code2,
   Layers3,
   LineChart,
+  MessageCircle,
+  MousePointerClick,
   SearchCheck,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   Target,
   Users,
@@ -19,7 +23,7 @@ import { FadeInUp } from "../components/shared/FadeInUp";
 export const metadata: Metadata = {
   title: "AI 搜索增长与 GEO 赋能服务 | Singularity Society",
   description:
-    "Singularity Society 面向全品类中小型成长型企业提供 AI 可见性诊断、GEO 基础建设、内容资产建设、企业知识库智能体和月度陪跑服务。",
+    "Singularity Society 面向中小型成长企业提供 AI 可见性诊断、GEO 基础建设、内容资产建设、小程序、APP、网站开发、私域承接、智能客服、企业知识库和月度陪跑服务。",
 };
 
 const gradientBrand = "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)";
@@ -110,6 +114,96 @@ const serviceProducts = [
       "AI 工具协作流程",
       "团队落地清单",
     ],
+  },
+];
+
+const conversionServices = [
+  {
+    name: "官网 / 落地页建设",
+    description: "用于承接 AI 搜索、内容平台和广告流量，展示品牌、服务、案例、FAQ 和预约入口。",
+    suitable: "本地服务企业、B2B 企业、专业服务机构、招商加盟企业。",
+    price: "19800 - 39800 元起",
+    icon: Code2,
+  },
+  {
+    name: "小程序增长系统",
+    description: "适用于需要预约、下单、团购、加盟、会员、优惠券、门店展示和私域运营的企业。",
+    suitable: "餐饮、本地服务、教育培训、农产品、区域连锁、门店型企业。",
+    price: "39800 - 98000 元",
+    icon: Smartphone,
+  },
+  {
+    name: "APP / H5 / 会员系统",
+    description: "适用于长期用户运营、会员复购、服务流程复杂或平台型业务。",
+    suitable: "平台型业务、会员型业务、长期运营型项目。",
+    price: "10 万元起",
+    icon: MousePointerClick,
+  },
+  {
+    name: "企业知识库 / 智能客服",
+    description: "把产品资料、销售话术、常见问题、案例和服务流程整理成 AI 可调用知识库，用于客服、销售、招商和员工培训。",
+    suitable: "B2B 企业、工厂型企业、专业服务机构、招商加盟企业。",
+    price: "19800 元起",
+    icon: BrainCircuit,
+  },
+  {
+    name: "私域线索承接系统",
+    description: "将官网、小程序、表单、企业微信、飞书、社群和客服入口打通，提升线索跟进效率。",
+    suitable: "高客单服务、本地服务、招商加盟、咨询服务。",
+    price: "9800 元起",
+    icon: MessageCircle,
+  },
+  {
+    name: "月度增长运营陪跑",
+    description: "围绕 AI 可见性复测、内容计划、小程序活动、私域转化和线索分析进行持续优化。",
+    suitable: "希望长期运营增长资产的企业。",
+    price: "5000 - 30000 元 / 月",
+    icon: LineChart,
+  },
+];
+
+const productLadder = [
+  {
+    level: "01",
+    name: "AI 可见性简版诊断",
+    problem: "先判断企业是否被 AI 知道、理解和提及。",
+    stage: "适合刚开始关注 AI 搜索的企业。",
+    deliverable: "基础企业信息梳理、少量高频问题测试、简版可见性判断。",
+  },
+  {
+    level: "02",
+    name: "GEO 深度诊断报告",
+    problem: "系统评估品牌、品类、竞品、内容缺口和平台表现。",
+    stage: "适合需要做预算、立项或老板汇报的企业。",
+    deliverable: "问题库、多平台测试、评分模型、竞品共现、内容缺口和 30 天建议。",
+  },
+  {
+    level: "03",
+    name: "内容资产建设包",
+    problem: "补齐 AI 和客户都能理解的品牌、服务、FAQ、案例和观点内容。",
+    stage: "适合已有官网或内容平台，但信息分散、不系统的企业。",
+    deliverable: "官网服务页、FAQ、案例文章、公众号深度文、小红书笔记、问答内容和短视频脚本。",
+  },
+  {
+    level: "04",
+    name: "官网 / 小程序 / 私域承接系统",
+    problem: "让从 AI 搜索和内容平台来的客户可以留下、咨询、预约、下单或提交加盟意向。",
+    stage: "适合已经有咨询需求，需要提升线索承接效率的企业。",
+    deliverable: "落地页、小程序、预约表单、团餐询盘、加盟资料、企业微信入口和飞书 / 企业微信通知。",
+  },
+  {
+    level: "05",
+    name: "APP / 企业知识库 / 业务中台",
+    problem: "把长期用户运营、会员复购、客服销售问答和内部流程沉淀成系统。",
+    stage: "适合业务复杂、需要长期运营和团队协作的企业。",
+    deliverable: "APP / H5 / 小程序组合、会员系统、企业知识库、智能客服、销售助手和运营后台。",
+  },
+  {
+    level: "06",
+    name: "月度运营陪跑 / 年度增长顾问",
+    problem: "持续复测 AI 可见性、优化内容资产、分析线索和转化路径。",
+    stage: "适合把 AI 搜索增长作为长期获客基础设施的企业。",
+    deliverable: "月度复测、内容计划、私域活动、线索分析、转化优化、月报和年度增长建议。",
   },
 ];
 
@@ -250,6 +344,127 @@ export default function ServicesPage() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <FadeInUp>
+              <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
+                    Conversion System
+                  </p>
+                  <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    数字化转化承接系统
+                  </h2>
+                </div>
+                <p className="text-base leading-8 text-[var(--text-secondary)]">
+                  AI 搜索带来的是入口，官网、小程序、APP、私域和智能客服负责把客户真正承接下来。GEO 负责让企业更容易被 AI 和客户发现，数字化转化系统负责让客户留下、咨询、预约、下单、加盟和复购。
+                </p>
+              </div>
+            </FadeInUp>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {conversionServices.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <FadeInUp key={service.name} delay={index * 0.04}>
+                    <article className="h-full rounded-[24px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6 transition-colors hover:border-[var(--border-hover)]">
+                      <div className="flex items-start justify-between gap-5">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[var(--border-default)] bg-black/20">
+                          <Icon className="h-5 w-5 text-[var(--accent-teal)]" />
+                        </div>
+                        <span className="rounded-full border border-[var(--border-default)] px-3 py-1 text-xs text-[var(--text-tertiary)]">
+                          升阶服务
+                        </span>
+                      </div>
+                      <h3 className="mt-6 text-xl font-semibold text-white">{service.name}</h3>
+                      <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{service.description}</p>
+                      <div className="mt-5 space-y-3 rounded-2xl border border-[var(--border-default)] bg-black/20 p-4">
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-tertiary)]">适合</p>
+                          <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{service.suitable}</p>
+                        </div>
+                        <div className="border-t border-[var(--border-default)] pt-3">
+                          <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-tertiary)]">价格区间</p>
+                          <p className="mt-2 text-sm font-semibold text-white">{service.price}</p>
+                        </div>
+                      </div>
+                    </article>
+                  </FadeInUp>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <FadeInUp>
+              <div className="max-w-3xl">
+                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
+                  Product Ladder
+                </p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  从 AI 可见，到数字化成交的产品阶梯
+                </h2>
+                <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">
+                  企业可以先从一次诊断开始，再根据内容资产基础、线索承接能力和运营复杂度，逐步升级到官网、小程序、APP、知识库和月度增长顾问。
+                </p>
+              </div>
+            </FadeInUp>
+
+            <div className="mt-10 space-y-4">
+              {productLadder.map((item, index) => (
+                <FadeInUp key={item.name} delay={index * 0.04}>
+                  <article className="grid gap-5 rounded-[24px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-5 transition-colors hover:border-[var(--border-hover)] lg:grid-cols-[110px_minmax(0,0.9fr)_minmax(0,1.25fr)] lg:items-start lg:p-6">
+                    <div className="flex items-center gap-3 lg:block">
+                      <span className="font-mono text-2xl font-semibold text-[var(--accent-teal)]">{item.level}</span>
+                      <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-tertiary)] lg:mt-2">Stage</p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{item.name}</h3>
+                      <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.problem}</p>
+                    </div>
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <div className="rounded-2xl border border-[var(--border-default)] bg-black/20 p-4">
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-tertiary)]">适合阶段</p>
+                        <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{item.stage}</p>
+                      </div>
+                      <div className="rounded-2xl border border-[var(--border-default)] bg-black/20 p-4">
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-tertiary)]">典型交付</p>
+                        <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{item.deliverable}</p>
+                      </div>
+                    </div>
+                  </article>
+                </FadeInUp>
+              ))}
+            </div>
+
+            <FadeInUp delay={0.12}>
+              <div className="mt-10 flex flex-col gap-3 rounded-[28px] border border-[var(--border-default)] bg-[rgba(255,255,255,0.03)] p-6 sm:flex-row sm:items-center sm:justify-between">
+                <p className="max-w-2xl text-sm leading-7 text-[var(--text-secondary)]">
+                  不确定从哪一层开始，可以先做 AI 可见性诊断，再根据企业现有内容和转化承接能力确定下一步。
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
+                    style={{ backgroundImage: gradientBrand }}
+                  >
+                    预约 AI 可见性诊断
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-default)] px-5 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--border-hover)]"
+                  >
+                    预约增长系统方案沟通
+                  </Link>
+                </div>
+              </div>
+            </FadeInUp>
           </div>
         </section>
 

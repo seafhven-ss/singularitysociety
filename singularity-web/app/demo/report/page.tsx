@@ -1,43 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  AlertTriangle,
-  ArrowLeft,
-  ArrowRight,
-  BarChart3,
-  CheckCircle2,
-  ClipboardList,
-  FileText,
-  Lightbulb,
-  ShieldCheck,
-  Store,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, FileText, ShieldCheck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../../components/site-shell";
-import { FadeInUp } from "../../components/shared/FadeInUp";
+import { PrintReportButton } from "./PrintReportButton";
 
 export const metadata: Metadata = {
-  title: "江南小馆 AI 搜索可见性诊断报告样例 | Singularity Society",
+  title: "江南小馆 AI 搜索增长诊断报告 | Singularity Society",
   description:
-    "GEO Growth Lab 样例诊断报告，展示企业 AI 搜索可见性评分、问题库、回答分析、内容资产缺口和 30 天优化建议。",
+    "GEO Growth Lab 演示样例报告，展示 AI 搜索可见性评分、转化承接诊断、内容资产缺口、数字化承接缺口和增长优化建议。",
 };
 
-const gradientBrand = "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)";
-
-const companyProfile = [
+const reportMeta = [
+  { label: "报告编号", value: "DEMO-JNXG-2026" },
+  { label: "诊断日期", value: "2026-06-04" },
+  { label: "企业名称", value: "江南小馆" },
   { label: "行业", value: "区域连锁餐饮品牌" },
   { label: "城市", value: "苏州" },
-  { label: "目标客户", value: "本地家庭客群、商务团餐客户、加盟意向客户" },
-  { label: "核心服务", value: "堂食、团餐、加盟、地方菜品牌连锁" },
+  { label: "诊断类型", value: "AI 搜索可见性 + 数字化转化承接" },
 ];
 
-const scoreItems = [
-  { label: "总分", value: "62 / 100", highlight: true },
+const coreScores = [
+  { label: "AI 可见性总分", value: "62 / 100" },
+  { label: "转化承接分", value: "46 / 100" },
+  { label: "内容资产完整度", value: "58 / 100" },
+  { label: "同类企业竞争风险", value: "中" },
+  { label: "建议优先级", value: "内容资产建设 + 小程序承接系统", wide: true },
+];
+
+const geoScores = [
   { label: "品牌可见性", value: "68" },
   { label: "品类关联度", value: "64" },
-  { label: "推荐倾向", value: "52" },
-  { label: "内容权威性", value: "58" },
+  { label: "AI 推荐倾向", value: "52" },
+  { label: "内容资产完整度", value: "58" },
   { label: "信源覆盖度", value: "55" },
-  { label: "同类企业共现风险", value: "中等" },
+  { label: "同类企业竞争风险", value: "中" },
+];
+
+const conversionScores = [
+  { label: "官网承接", value: "58" },
+  { label: "小程序承接", value: "30" },
+  { label: "私域入口", value: "42" },
+  { label: "预约 / 询盘", value: "50" },
+  { label: "案例与评价", value: "48" },
+  { label: "会员 / 复购", value: "35" },
+  { label: "数据追踪", value: "40" },
 ];
 
 const sampleQuestions = [
@@ -53,291 +59,230 @@ const sampleQuestions = [
   "餐饮品牌官网应该写哪些内容才容易被 AI 理解？",
 ];
 
-const answerAnalyses = [
-  {
-    question: "苏州有哪些适合家庭聚餐的本地餐饮品牌？",
-    summary: "模拟回答提到苏州本地菜、家庭聚餐和门店环境，但没有明确提及江南小馆，也缺少门店案例证据。",
-    mentionedCompany: "否",
-    competitors: "出现同类餐饮品牌泛称，未列出具体竞品",
-    issues: "品牌未被识别，家庭聚餐场景缺少可引用内容。",
-    suggestion: "补充家庭聚餐场景页、亲子友好 FAQ、门店环境照片和真实评价整理。",
-  },
-  {
-    question: "苏州团餐服务品牌怎么选？",
-    summary: "模拟回答从供餐稳定性、菜品标准化和配送能力展开，但没有形成对江南小馆团餐能力的关联。",
-    mentionedCompany: "否",
-    competitors: "可能出现大型团餐服务商",
-    issues: "缺少团餐服务说明页、服务流程、客户案例和报价边界。",
-    suggestion: "建设团餐服务 FAQ、企业客户案例、菜单样例和服务半径说明。",
-  },
-  {
-    question: "苏州本地菜品牌加盟需要注意什么？",
-    summary: "模拟回答强调品牌成熟度、总部支持、选址和供应链，但没有引用江南小馆的加盟政策。",
-    mentionedCompany: "弱提及",
-    competitors: "可能出现区域餐饮加盟品牌",
-    issues: "加盟政策、总部支持和门店模型缺少结构化展示。",
-    suggestion: "补充加盟说明页、投资测算范围、总部支持清单和门店成长案例。",
-  },
-];
-
 const contentGaps = [
   "缺少结构化品牌介绍页",
   "缺少团餐服务 FAQ",
   "缺少加盟政策说明页",
   "缺少真实门店案例",
   "缺少客户评价整理",
-  "缺少“苏州本地餐饮品牌”相关知识文章",
-  "缺少老板 / 主理人观点内容",
-  "缺少公众号、小红书、抖音内容协同",
+  "缺少主理人观点内容",
+  "缺少小红书 / 公众号 / 抖音协同内容",
+  "缺少 AI 可引用的标准化问题回答",
+];
+
+const conversionGaps = [
+  "缺少团餐询盘表单",
+  "缺少加盟资料下载入口",
+  "缺少小程序服务承接",
+  "缺少会员券包",
+  "缺少企业微信私域入口",
+  "缺少数据看板",
+  "缺少客户评价与案例聚合页",
 ];
 
 const thirtyDayPlan = [
-  { week: "第 1 周", action: "完成品牌语义地图、官网服务页、基础 FAQ。" },
-  { week: "第 2 周", action: "补充门店案例、团餐场景内容、加盟常见问题。" },
-  { week: "第 3 周", action: "发布公众号深度文、小红书笔记、短视频脚本。" },
-  { week: "第 4 周", action: "复测 AI 可见性，分析是否改善品牌提及和品类关联。" },
+  { period: "第 1 周", action: "品牌语义地图、官网服务页、基础 FAQ。" },
+  { period: "第 2 周", action: "团餐服务内容、加盟 FAQ、门店案例。" },
+  { period: "第 3 周", action: "公众号、小红书、抖音、问答平台内容发布。" },
+  { period: "第 4 周", action: "AI 可见性复测，规划小程序承接系统。" },
 ];
+
+const ninetyDayRoadmap = [
+  { period: "第 1 阶段", action: "GEO 诊断和内容资产基础建设。" },
+  { period: "第 2 阶段", action: "小程序 / 私域承接系统上线。" },
+  { period: "第 3 阶段", action: "内容运营、复测和会员复购。" },
+];
+
+const serviceSuggestions = ["GEO 基础建设包", "小程序增长版", "月度运营陪跑"];
+
+function ReportSection({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="report-section border-t border-slate-200 px-8 py-8 first:border-t-0 sm:px-10">
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">{eyebrow}</p>
+      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">{title}</h2>
+      <div className="mt-6">{children}</div>
+    </section>
+  );
+}
+
+function ScoreGrid({ items }: { items: Array<{ label: string; value: string; wide?: boolean }> }) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {items.map((item) => (
+        <div key={item.label} className={`rounded-2xl border border-slate-200 bg-slate-50 p-4 ${item.wide ? "sm:col-span-2" : ""}`}>
+          <p className="text-xs font-medium text-slate-500">{item.label}</p>
+          <p className="mt-2 text-xl font-semibold text-slate-950">{item.value}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {items.map((item) => (
+        <div key={item} className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-4">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700" />
+          <p className="text-sm leading-6 text-slate-700">{item}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function DemoReportPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <SiteHeader />
-      <main>
-        <section className="border-b border-[var(--border-default)]">
-          <div className="mx-auto max-w-6xl px-6 pb-20 pt-28 sm:pb-24 sm:pt-36 lg:pt-40">
-            <FadeInUp>
-              <Link href="/demo" className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-white">
-                <ArrowLeft className="h-4 w-4" />
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] print:bg-white">
+      <div className="print:hidden">
+        <SiteHeader />
+      </div>
+
+      <main className="px-4 py-10 sm:px-6 lg:px-8 print:px-0 print:py-0">
+        <div className="mx-auto mb-6 flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between print:hidden">
+          <Link href="/demo" className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-white">
+            <ArrowLeft className="h-4 w-4" />
+            返回工具演示
+          </Link>
+          <PrintReportButton />
+        </div>
+
+        <article className="mx-auto max-w-5xl overflow-hidden rounded-[28px] bg-white text-slate-950 shadow-[0_28px_90px_rgba(0,0,0,0.42)] print:max-w-none print:rounded-none print:shadow-none">
+          <section className="relative overflow-hidden bg-slate-950 px-8 py-10 text-white sm:px-10 sm:py-12 print:bg-slate-950 print:text-white">
+            <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(135deg,#7b7fff,#4dd9d5,#a78bfa)]" />
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="inline-flex rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-xs font-medium text-amber-100">
+                  本报告为演示样例，不代表真实平台测试结果
+                </p>
+                <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+                  江南小馆 AI 搜索增长诊断报告
+                </h1>
+                <p className="mt-4 text-sm leading-7 text-slate-300">电子诊断报告单 / AI 搜索可见性 + 数字化转化承接</p>
+              </div>
+              <FileText className="hidden h-16 w-16 text-cyan-300 lg:block" />
+            </div>
+
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {reportMeta.map((item) => (
+                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-xs text-slate-400">{item.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-white">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <ReportSection eyebrow="Executive Summary" title="执行摘要">
+            <p className="text-base leading-8 text-slate-700">
+              在本演示样例中，江南小馆具备一定品牌识别基础，但在“苏州餐饮加盟品牌推荐”“苏州团餐服务怎么选”“区域连锁餐饮品牌推荐”等场景下，仍需要通过内容资产、FAQ、案例、加盟资料和小程序承接系统增强 AI 可理解性与客户转化路径。
+            </p>
+          </ReportSection>
+
+          <ReportSection eyebrow="Core Score" title="核心评分">
+            <ScoreGrid items={coreScores} />
+          </ReportSection>
+
+          <ReportSection eyebrow="GEO Dimensions" title="6 维 GEO 评分">
+            <ScoreGrid items={geoScores} />
+          </ReportSection>
+
+          <ReportSection eyebrow="Conversion Diagnosis" title="转化承接诊断">
+            <ScoreGrid items={conversionScores} />
+          </ReportSection>
+
+          <ReportSection eyebrow="Question Library" title="问题库样例">
+            <ol className="grid gap-3">
+              {sampleQuestions.map((question, index) => (
+                <li key={question} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+                  <span className="font-mono text-xs font-semibold text-cyan-700">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{question}</span>
+                </li>
+              ))}
+            </ol>
+          </ReportSection>
+
+          <ReportSection eyebrow="Content Gaps" title="内容资产缺口">
+            <BulletList items={contentGaps} />
+          </ReportSection>
+
+          <ReportSection eyebrow="Conversion Gaps" title="数字化承接缺口">
+            <BulletList items={conversionGaps} />
+          </ReportSection>
+
+          <ReportSection eyebrow="30-Day Plan" title="30 天优化建议">
+            <div className="grid gap-3 md:grid-cols-2">
+              {thirtyDayPlan.map((item) => (
+                <div key={item.period} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-sm font-semibold text-slate-950">{item.period}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">{item.action}</p>
+                </div>
+              ))}
+            </div>
+          </ReportSection>
+
+          <ReportSection eyebrow="90-Day Roadmap" title="90 天增长路线">
+            <div className="grid gap-3 md:grid-cols-3">
+              {ninetyDayRoadmap.map((item) => (
+                <div key={item.period} className="rounded-2xl border border-slate-200 bg-white p-4">
+                  <p className="text-sm font-semibold text-slate-950">{item.period}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">{item.action}</p>
+                </div>
+              ))}
+            </div>
+          </ReportSection>
+
+          <ReportSection eyebrow="Recommended Service" title="推荐服务方案">
+            <div className="grid gap-3 md:grid-cols-3">
+              {serviceSuggestions.map((item) => (
+                <div key={item} className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-sm font-semibold text-slate-950">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </ReportSection>
+
+          <ReportSection eyebrow="Statement" title="报告声明">
+            <div className="flex gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-cyan-700" />
+              <p className="text-sm leading-7 text-slate-700">
+                本报告为演示样例，不代表真实平台测试结果。实际诊断结果会根据企业资料、测试平台、测试问题、平台模型、数据来源和用户提问方式发生变化。本服务用于提升企业被 AI 理解、引用和推荐的概率，并辅助企业建设长期可积累的内容资产与数字化转化系统。
+              </p>
+            </div>
+          </ReportSection>
+
+          <section className="report-section border-t border-slate-200 px-8 py-8 sm:px-10 print:hidden">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
+                style={{ backgroundImage: "linear-gradient(135deg, #7b7fff, #4dd9d5, #a78bfa)" }}
+              >
+                预约一次真实诊断
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/demo"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-slate-500"
+              >
                 返回工具演示
               </Link>
-              <p className="mt-8 text-xs font-medium uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
-                Demo Report
-              </p>
-              <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                江南小馆 AI 搜索可见性诊断报告
-              </h1>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-sm text-amber-100">
-                <AlertTriangle className="h-4 w-4" />
-                演示样例，不代表真实平台测试结果。
-              </div>
-            </FadeInUp>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-            <FadeInUp>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  Company
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">企业背景</h2>
-              </div>
-            </FadeInUp>
-            <div className="grid gap-3">
-              {companyProfile.map((item, index) => (
-                <FadeInUp key={item.label} delay={index * 0.04}>
-                  <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] px-5 py-4">
-                    <p className="text-xs text-[var(--text-tertiary)]">{item.label}</p>
-                    <p className="mt-2 text-sm leading-7 text-white">{item.value}</p>
-                  </div>
-                </FadeInUp>
-              ))}
             </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto max-w-5xl px-6">
-            <FadeInUp>
-              <div className="rounded-[28px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6 sm:p-8">
-                <Store className="h-6 w-6 text-[var(--accent-teal)]" />
-                <h2 className="mt-5 text-2xl font-semibold tracking-tight text-white sm:text-3xl">诊断摘要</h2>
-                <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">
-                  在演示样例中，江南小馆在品牌词场景下具备一定识别基础，但在“苏州餐饮加盟品牌推荐”“苏州团餐品牌怎么选”“区域连锁餐饮品牌推荐”等场景下，仍需要通过官网 FAQ、案例内容、加盟说明和平台内容资产增强 AI 可理解性。
-                </p>
-              </div>
-            </FadeInUp>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <FadeInUp>
-              <div className="max-w-3xl">
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  Visibility Score
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">AI 可见性评分</h2>
-              </div>
-            </FadeInUp>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {scoreItems.map((item, index) => (
-                <FadeInUp key={item.label} delay={index * 0.035}>
-                  <div
-                    className={`rounded-[22px] border p-5 ${
-                      item.highlight
-                        ? "border-[var(--accent-teal)] bg-[rgba(77,217,213,0.08)]"
-                        : "border-[var(--border-default)] bg-[var(--bg-panel)]"
-                    }`}
-                  >
-                    <BarChart3 className="h-5 w-5 text-[var(--accent-teal)]" />
-                    <p className="mt-5 text-xs text-[var(--text-tertiary)]">{item.label}</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">{item.value}</p>
-                  </div>
-                </FadeInUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <FadeInUp>
-              <div className="max-w-3xl">
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  Question Library
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">问题库样例</h2>
-              </div>
-            </FadeInUp>
-            <div className="mt-10 grid gap-3 md:grid-cols-2">
-              {sampleQuestions.map((question, index) => (
-                <FadeInUp key={question} delay={index * 0.025}>
-                  <div className="flex gap-3 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] px-5 py-4">
-                    <span className="font-mono text-xs text-[var(--text-tertiary)]">{String(index + 1).padStart(2, "0")}</span>
-                    <p className="text-sm leading-7 text-[var(--text-secondary)]">{question}</p>
-                  </div>
-                </FadeInUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <FadeInUp>
-              <div className="max-w-3xl">
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  Answer Analysis
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">回答分析样例</h2>
-                <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">
-                  以下为模拟回答片段，用于展示评分方式，不代表真实平台输出。
-                </p>
-              </div>
-            </FadeInUp>
-            <div className="mt-10 grid gap-4 lg:grid-cols-3">
-              {answerAnalyses.map((item, index) => (
-                <FadeInUp key={item.question} delay={index * 0.05}>
-                  <article className="h-full rounded-[24px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-6">
-                    <ClipboardList className="h-5 w-5 text-[var(--accent-indigo)]" />
-                    <h3 className="mt-5 text-base font-semibold leading-7 text-white">{item.question}</h3>
-                    <div className="mt-4 space-y-3 text-sm leading-7 text-[var(--text-secondary)]">
-                      <p>模拟回答摘要：{item.summary}</p>
-                      <p>是否提及企业：{item.mentionedCompany}</p>
-                      <p>是否出现同类企业：{item.competitors}</p>
-                      <p>存在问题：{item.issues}</p>
-                      <p>优化建议：{item.suggestion}</p>
-                    </div>
-                  </article>
-                </FadeInUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
-            <FadeInUp>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  Content Gaps
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">内容资产缺口</h2>
-              </div>
-            </FadeInUp>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {contentGaps.map((gap, index) => (
-                <FadeInUp key={gap} delay={index * 0.035}>
-                  <div className="flex min-h-16 items-center gap-3 rounded-2xl border border-[var(--border-default)] bg-[var(--bg-panel)] px-5 py-4">
-                    <Lightbulb className="h-5 w-5 shrink-0 text-[var(--accent-teal)]" />
-                    <span className="text-sm font-medium text-[var(--text-secondary)]">{gap}</span>
-                  </div>
-                </FadeInUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <FadeInUp>
-              <div className="max-w-3xl">
-                <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  30-Day Plan
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">30 天优化建议</h2>
-              </div>
-            </FadeInUp>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {thirtyDayPlan.map((item, index) => (
-                <FadeInUp key={item.week} delay={index * 0.04}>
-                  <article className="h-full rounded-[22px] border border-[var(--border-default)] bg-[var(--bg-panel)] p-5">
-                    <FileText className="h-5 w-5 text-[var(--accent-teal)]" />
-                    <h3 className="mt-5 text-lg font-semibold text-white">{item.week}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.action}</p>
-                  </article>
-                </FadeInUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-[var(--border-default)] py-12">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="rounded-[24px] border border-[var(--border-default)] bg-[rgba(255,255,255,0.03)] p-6">
-              <div className="flex items-start gap-4">
-                <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[var(--accent-teal)]" />
-                <p className="text-sm leading-7 text-[var(--text-secondary)]">
-                  本报告为演示样例，不代表真实平台测试结果。诊断结果用于辅助判断企业在 AI 搜索场景中的可见性表现，不代表任何平台官方排名结果。
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-4xl px-6 text-center">
-            <FadeInUp>
-              <CheckCircle2 className="mx-auto h-7 w-7 text-[var(--accent-teal)]" />
-              <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                下一步服务建议
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-[var(--text-secondary)]">
-                建议从“AI 可见性诊断 + GEO 基础建设”开始，先确认当前表现，再补齐内容资产和知识资产。
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
-                  style={{ backgroundImage: gradientBrand }}
-                >
-                  预约一次真实诊断
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-default)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--border-hover)]"
-                >
-                  返回工具演示
-                </Link>
-              </div>
-            </FadeInUp>
-          </div>
-        </section>
+          </section>
+        </article>
       </main>
-      <SiteFooter />
+
+      <div className="print:hidden">
+        <SiteFooter />
+      </div>
     </div>
   );
 }

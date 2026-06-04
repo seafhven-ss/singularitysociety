@@ -135,8 +135,10 @@ export default function Home() {
                   <p className="text-xs font-medium uppercase tracking-[0.32em] text-[var(--text-tertiary)]">
                     Singularity Society / AI Search Growth
                   </p>
-                  <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                    客户开始问 AI“哪家公司靠谱”时，你的企业会出现在答案里吗？
+                  <h1 className="mt-6 max-w-[780px] text-[2.65rem] font-semibold leading-[1.08] tracking-[-0.01em] text-white sm:text-5xl sm:leading-[1.06] lg:text-[4.35rem] lg:leading-[1.04]">
+                    <span className="block">客户开始问 AI</span>
+                    <span className="block">“哪家公司靠谱”时，</span>
+                    <span className="block">你的企业会出现吗？</span>
                   </h1>
                   <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--text-secondary)]">
                     Singularity Society 帮助中小型成长企业建立 AI 搜索时代的品牌可见性、内容资产和询盘转化系统，让企业更容易被 AI 理解、引用和推荐。
