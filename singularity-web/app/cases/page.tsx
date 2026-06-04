@@ -6,7 +6,7 @@ import { PageSection, SiteFooter, SiteHeader } from "../components/site-shell";
 export const metadata: Metadata = {
   title: "案例与场景化解决方案 | Singularity Society",
   description:
-    "匿名化场景案例展示，说明 AI 搜索可见性诊断、内容资产建设、企业知识库、小程序、APP、私域承接、智能客服和运营增长的服务方法与交付路径。",
+    "案例已按客户要求做匿名化处理，说明 AI 搜索可见性诊断、内容资产建设、企业知识库、小程序、APP、私域承接、智能客服和运营增长的服务方法与交付路径。",
 };
 
 const cases = [
@@ -127,13 +127,13 @@ export default function CasesPage() {
         <PageSection
           eyebrow="Cases"
           title="案例与场景化解决方案"
-          description="我们通过 AI 搜索可见性诊断、内容资产建设、企业知识库、小程序 / APP / 私域系统，帮助不同类型企业搭建从被看见到被转化的增长闭环。以下案例为匿名化 / 场景化案例展示，用于说明服务方法、交付路径和可实现的业务价值。"
+          description="我们通过 AI 搜索可见性诊断、内容资产建设、企业知识库、小程序 / APP / 私域系统，帮助不同类型企业搭建从被看见到被转化的增长闭环。"
         >
           <div className="mb-8 rounded-[24px] border border-[var(--border-default)] bg-[rgba(255,255,255,0.03)] p-6">
             <div className="flex items-start gap-4">
               <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[var(--accent-teal)]" />
               <p className="text-sm leading-7 text-[var(--text-secondary)]">
-                以下案例为匿名化 / 场景化案例展示，用于说明服务方法、交付路径和可实现的业务价值。不展示真实客户名称，也不代表任何可被查证的具体合作关系。
+                以下案例已按客户要求做匿名化处理。
               </p>
             </div>
           </div>
